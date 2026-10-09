@@ -1,11 +1,7 @@
-"""Step 3: looking for double descent beyond the interpolation threshold.
+"""Step 3: double descent in node width.
 
-Capacity axis: the width w of every node (k = ceil(w/4) channels, w hidden units). For each width we grow
-a full tree (gated variant) on a fixed training subset, with and without symmetric label noise, and
-evaluate it truncated at several depth caps -- depth 0 is the root network alone, the classical
-"one network of growing width" experiment; the full tree always interpolates.
-
-Outputs: results/double_descent.json, results/03_double_descent.log
+Grows a full gated tree for each width on a fixed subset, with and without label noise, and evaluates it
+at several depth caps (depth 0 is the root network alone).
 """
 import argparse
 import sys
@@ -48,7 +44,7 @@ for dataset in args.datasets:
         for eta in args.noise:
             y = ytr_all[sub].copy()
             flip = rng.random(len(y)) < eta
-            y[flip] = (y[flip] + rng.integers(1, K, flip.sum())) % K     # a different class
+            y[flip] = (y[flip] + rng.integers(1, K, flip.sum())) % K     # always a different class
             key = f"{dataset}_eta{eta}_seed{seed}"
             rows = out.get(key, [])
             done = {r["width"] for r in rows}

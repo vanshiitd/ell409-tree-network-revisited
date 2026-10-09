@@ -1,15 +1,8 @@
-"""Step 5: minimising the size of the network.
+"""Step 5: shrinking the network.
 
-Three complementary levers, all evaluated while keeping 100% training accuracy unless stated:
-  (1) node width: grow the full (interpolating) tree for widths 1..64 and count total parameters --
-      tiny nodes need many of them, wide nodes waste parameters, so total size is U-shaped in width;
-  (2) weight pruning inside nodes: per node, iterative magnitude pruning with a short masked fine-tune
-      that must reproduce the node's own decisions on its training set exactly (so the tree's training
-      predictions are unchanged); reports the surviving non-zero weights;
-  (3) reduced-error pruning of whole subtrees on the validation split (gives up 100% training accuracy),
-      taken from step 2.
-
-Outputs: results/minimize.json, results/05_minimize.log
+1. width sweep: total parameters of the full tree for different node widths
+2. magnitude pruning inside nodes, keeping every node's training decisions exactly
+3. validation pruning of subtrees (results come from step 2)
 """
 import argparse
 import copy
@@ -51,10 +44,9 @@ def acc(model, Fx, y):
     return float((model.predict(Fx).cpu().numpy().astype(int) == y.astype(int)).mean())
 
 
-# ------------------------------------------------------------------ (2) magnitude pruning inside nodes
 def prune_node(net, Fx, g, levels=(0.5, 0.75, 0.9, 0.95, 0.98), rounds=15, lr=2e-3):
-    """Largest sparsity at which the node, after a short masked fine-tune, reproduces its decisions g on
-    its own training set exactly. Returns (pruned_net, nonzero_weights, sparsity)."""
+    """Largest sparsity at which the node, after a masked fine-tune, still reproduces its decisions g.
+    Returns (pruned_net, nonzero_weights, sparsity)."""
     params = [net.reduce.weight, net.fc1.weight, net.fc2.weight]
     best = copy.deepcopy(net)
     best_s = 0.0
@@ -100,7 +92,7 @@ def prune_node(net, Fx, g, levels=(0.5, 0.75, 0.9, 0.95, 0.98), rounds=15, lr=2e
 
 
 def prune_tree_weights(tree, Fx, t):
-    """Apply prune_node to every node of a gated binary tree (top-down, routing training samples)."""
+    """Run prune_node on every node of a gated tree, top-down."""
     stats = []
 
     def rec(node, rows):
@@ -129,7 +121,7 @@ for dataset in ("catsdogs", "cifar10"):
         sweep = r.get("width_sweep", [])
         done = {row["width"] for row in sweep}
         main = load_json("trees").get(f"{dataset}_split_gated_w8")
-        if 8 not in done and main is not None:              # reuse the main width-8 tree of step 2
+        if 8 not in done and main is not None:              # reuse the width-8 tree from step 2
             sweep.append(dict(width=8, node_params=count_params(NodeNet(8)), nodes=main["summary"]["nodes"],
                               networks=main["summary"]["networks"], params=main["summary"]["params"],
                               depth=main["summary"]["depth"], train=main["train"], test=main["test"],
@@ -159,7 +151,7 @@ for dataset in ("catsdogs", "cifar10"):
             res[dataset] = r
             save_json("minimize", res)
 
-    # weight pruning inside the nodes of the main (width-8) tree
+    # weight pruning inside the width-8 tree
     model = torch.load(RESULTS / "trees" / f"{dataset}_split_gated_w{args.prune_width}.pt", map_location=dev,
                        weights_only=False)
     t0 = time.time()

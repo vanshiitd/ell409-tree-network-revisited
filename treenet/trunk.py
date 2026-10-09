@@ -1,12 +1,7 @@
-"""Shared convolutional trunk.
+"""Shared CNN trunk, trained once on its own data split and then frozen.
 
-The trunk is trained ONCE, on its own disjoint data split, and then frozen. Every tree node reads the
-same mid-level feature map ("tap") produced by the trunk, so the expensive convolutional features are
-paid for once instead of once per node.
-
-    32x32 input :            stage1 (32ch) -> 16x16 -> stage2 (64ch) -> 8x8  = TAP (64 x 8 x 8)
-    64x64 input : stem(32ch) -> 32x32 -> stage1 -> 16x16 -> stage2 -> 8x8  = TAP
-    pretraining only:        TAP -> stage3 (128ch) -> 4x4 -> global average pool -> linear
+Tree nodes read the 64x8x8 feature map after stage 2 (the "tap"). Stage 3 and the linear head are only
+used while pre-training the trunk.
 """
 import math
 import time
@@ -41,7 +36,7 @@ class Trunk(nn.Module):
         x = x_uint8_nhwc.permute(0, 3, 1, 2).float() / 255.0
         return (x - self.mean[None, :, None, None]) / self.std[None, :, None, None]
 
-    def tap(self, x):            # x: normalised NCHW float
+    def tap(self, x):
         return self.pre(x)
 
     def forward(self, x):
@@ -49,7 +44,7 @@ class Trunk(nn.Module):
 
 
 def _augment(x):
-    """Random crop (pad 4, reflect) + horizontal flip, on a normalised NCHW batch."""
+    """Random crop (reflect padding) and horizontal flip."""
     B, C, H, W = x.shape
     p = H // 8
     xp = F.pad(x, (p, p, p, p), mode="reflect")
@@ -62,7 +57,6 @@ def _augment(x):
 
 
 def train_trunk(X, y, n_classes, device, epochs=30, bs=128, lr=0.05, wd=5e-4, seed=0, log=print):
-    """Supervised training of the trunk on its own split. X: uint8 NHWC numpy."""
     torch.manual_seed(seed)
     net = Trunk(in_size=X.shape[1], n_classes=n_classes).to(device)
     xf = X.reshape(-1, 3).astype(np.float64) / 255.0
@@ -96,7 +90,7 @@ def train_trunk(X, y, n_classes, device, epochs=30, bs=128, lr=0.05, wd=5e-4, se
 
 
 def random_trunk(X, n_classes, device, seed=0):
-    """Untrained trunk; BatchNorm statistics are calibrated on X so the random features are well scaled."""
+    """Untrained trunk with BatchNorm statistics calibrated on X."""
     torch.manual_seed(seed)
     net = Trunk(in_size=X.shape[1], n_classes=n_classes).to(device)
     xf = X.reshape(-1, 3).astype(np.float64) / 255.0
@@ -105,7 +99,7 @@ def random_trunk(X, n_classes, device, seed=0):
     for m in net.modules():
         if isinstance(m, nn.BatchNorm2d):
             m.reset_running_stats()
-            m.momentum = None                     # cumulative average over the calibration pass
+            m.momentum = None                     # cumulative average over the pass
     net.train()
     Xt = torch.tensor(X, device=device)
     with torch.no_grad():
@@ -127,7 +121,7 @@ def predict_logits(net, X, device, bs=1000):
 
 @torch.no_grad()
 def extract_tap(net, X, device, bs=1000, resize_to=None):
-    """Frozen mid-level features (N, 64, 8, 8) as float16 numpy."""
+    """Tap features (N, 64, 8, 8) as float16 numpy."""
     net.eval()
     out = []
     for k in range(0, len(X), bs):

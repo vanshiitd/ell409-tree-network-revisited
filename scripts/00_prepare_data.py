@@ -1,8 +1,4 @@
-"""Step 0: decode both datasets once into cached uint8 arrays (data/cifar10.npz, data/catsdogs64.npz).
-
-Expects data/cifar10_hf/{train,test}.parquet (Hugging Face mirror uoft-cs/cifar10) or the original
-data/cifar-10-python.tar.gz, and data/catsdogs/PetImages/{Cat,Dog}/*.jpg (Microsoft's Kaggle Cats and Dogs).
-"""
+"""Step 0: decode both datasets once and cache them as data/cifar10.npz and data/catsdogs64.npz."""
 import sys
 from pathlib import Path
 

@@ -1,13 +1,8 @@
-"""Step 7 (extra): the tree as a label-noise detector.
+"""Step 7 (extra): using the tree to find mislabelled samples.
 
-A gated tree routes every training sample along a single path. Samples the early, general-purpose nodes
-already classify correctly stop high in the tree; a mislabelled sample contradicts its neighbours and can
-only be fitted by a deep, highly specific node. We therefore score each training sample by the depth at
-which the tree finally resolves it, and test how well that score finds labels we flipped on purpose.
-
-Also lists the deepest-resolved samples of the real (un-noised) Cats vs Dogs training set.
-
-Outputs: results/noise_detection.json, figures/noise_detection.pdf, figures/deepest_catsdogs.pdf
+A mislabelled sample can only be fitted by a deep, specific node, so the depth where a sample is finally
+resolved (or the size of its last node's sample set) is used as a noise score. Tested on labels flipped on
+purpose, and on the real Cats vs Dogs training set.
 """
 import sys
 from pathlib import Path
@@ -36,8 +31,7 @@ W, N, ETA = (int(sys.argv[1]) if len(sys.argv) > 1 else 8), 4000, 0.2
 
 
 def resolve(tree, Fx):
-    """For each sample of a gated binary tree: depth of the last node on its path and the size of that
-    node's training set (its 'leaf size')."""
+    """Depth of the last node on each sample's path, and the size of that node's sample set."""
     depth = np.zeros(len(Fx), dtype=np.int64)
     size = np.zeros(len(Fx), dtype=np.int64)
 
@@ -63,8 +57,8 @@ def resolve_depth(tree, Fx):
 
 
 def sample_scores(model, Fx, y, dataset):
-    """Returns (resolution depth, leaf size); for CIFAR-10 depth is summed and leaf size minimised over
-    the class-hierarchy splits a sample passes through."""
+    """(resolution depth, leaf size). For CIFAR-10, depth is summed and leaf size minimised over the
+    splits a sample passes through."""
     if dataset != "cifar10":
         return resolve(model, Fx)
     total = np.zeros(len(y), dtype=np.int64)
@@ -100,7 +94,7 @@ for ax, dataset in zip(axes, ("catsdogs", "cifar10")):
         model = TreeTypeNetwork(width=W, variant="gated", seed=3).fit(Fx, y)
     depth, leaf = sample_scores(model, Fx, y, dataset)
     auc_depth = roc_auc_score(flip, depth)
-    score = -np.log(leaf)                       # small final leaf -> suspicious label
+    score = -np.log(leaf)                       # small final leaf means a suspicious label
     auc = roc_auc_score(flip, score)
     k = int(flip.sum())
     top = np.argsort(-score, kind="stable")[:k]
@@ -124,13 +118,13 @@ fig.tight_layout(w_pad=2)
 fig.savefig(FIGURES / f"noise_detection_w{W}.pdf")
 plt.close(fig)
 
-# deepest-resolved samples of the real Cats vs Dogs training set (main width-8 tree)
+# deepest-resolved samples of the real Cats vs Dogs training set
 feats = load_features("catsdogs", "split", dev)
 Ftr, ytr = feats["tree"]
 model = torch.load(RESULTS / "trees" / "catsdogs_split_gated_w8.pt", map_location=dev, weights_only=False)
 depth, leaf = resolve(model, Ftr)
 Xtree = get_splits("catsdogs")["tree"][0]
-order = np.lexsort((-depth, leaf))[:16]           # smallest final sets first, deeper first on ties
+order = np.lexsort((-depth, leaf))[:16]           # smallest sets first, deeper first on ties
 fig, axes = plt.subplots(2, 8, figsize=(6.6, 2.0))
 for ax, i in zip(axes.flat, order):
     ax.imshow(Xtree[i])

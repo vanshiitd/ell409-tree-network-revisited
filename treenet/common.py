@@ -1,4 +1,4 @@
-"""Paths, device, logging and feature-cache helpers shared by the scripts."""
+"""Paths, device, logging and feature cache helpers."""
 import json
 import time
 from pathlib import Path
@@ -53,6 +53,5 @@ def feature_path(dataset, trunk):
 
 
 def load_features(dataset, trunk, dev):
-    """Returns dict split -> (features fp16 tensor on device, labels numpy)."""
     d = np.load(feature_path(dataset, trunk))
     return {s: (torch.tensor(d[f"F_{s}"], device=dev), d[f"y_{s}"]) for s in ("tree", "val", "test")}

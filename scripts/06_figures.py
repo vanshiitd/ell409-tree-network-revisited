@@ -1,7 +1,4 @@
-"""Step 6: summary figures and LaTeX tables for the report, from results/*.json.
-
-Outputs: figures/{growth,double_descent,minimize,tree_catsdogs,hierarchy_cifar10}.pdf, report/tables/*.tex
-"""
+"""Step 6: summary figures and LaTeX tables for the report, built from results/*.json."""
 import sys
 from pathlib import Path
 
@@ -35,7 +32,7 @@ def ptrain(x):
     return "100" if x >= 0.99995 else f"{100 * x:.2f}"
 
 
-# ------------------------------------------------------------------ main results table
+# main results table
 rows = []
 order = [("catsdogs", "split", "gated"), ("catsdogs", "split", "faithful"), ("catsdogs", "transfer", "gated"),
          ("catsdogs", "random", "gated"), ("cifar10", "split", "gated"), ("cifar10", "split", "faithful"),
@@ -63,7 +60,7 @@ for ds, tr, var in order:
 body += [r"\bottomrule", r"\end{tabular}"]
 (TAB / "tab_main.tex").write_text("\n".join(body) + "\n")
 
-# ------------------------------------------------------------------ growth curves
+# growth curves
 fig, axes = plt.subplots(1, 2, figsize=(6.6, 2.6))
 for ax, ds, ttl in zip(axes, ("catsdogs", "cifar10"), ("(a) Cats vs Dogs", "(b) CIFAR-10")):
     g = trees.get(f"{ds}_split_gated_w{W}")
@@ -95,7 +92,7 @@ fig.tight_layout(w_pad=2)
 fig.savefig(FIGURES / "growth.pdf")
 plt.close(fig)
 
-# ------------------------------------------------------------------ double descent
+# double descent
 if (RESULTS / "double_descent.json").exists():
     dd = load_json("double_descent")
     keys = [k for k in ("catsdogs_eta0.0_seed0", "catsdogs_eta0.2_seed0", "cifar10_eta0.0_seed0",
@@ -126,7 +123,7 @@ if (RESULTS / "double_descent.json").exists():
     fig.savefig(FIGURES / "double_descent.pdf")
     plt.close(fig)
 
-# ------------------------------------------------------------------ minimisation
+# minimisation
 if (RESULTS / "minimize.json").exists():
     mz = load_json("minimize")
     fig, axes = plt.subplots(1, 2, figsize=(6.6, 2.5))
@@ -136,7 +133,7 @@ if (RESULTS / "minimize.json").exists():
             continue
         w = np.array([r["width"] for r in sw])
         prm = np.array([r["params"] for r in sw])
-        ok = np.array([r["train"] >= 0.9999 for r in sw])          # reached the best reachable training accuracy
+        ok = np.array([r["train"] >= 0.9999 for r in sw])          # fits the training set
         axes[0].plot(w, prm, "-", color=col, lw=1.2, label=NICE[ds])
         axes[0].plot(w[ok], prm[ok], "o", color=col, mec="white", mew=0.6)
         axes[0].plot(w[~ok], prm[~ok], "o", mfc="white", mec=col, mew=1.2)
@@ -203,7 +200,7 @@ if (RESULTS / "minimize.json").exists():
     (TAB / "tab_minimize.tex").write_text("\n".join(body) + "\n")
 
 
-# ------------------------------------------------------------------ tree diagram (Cats vs Dogs, top levels)
+# tree diagram (Cats vs Dogs, top levels)
 def draw_tree(nodes, ax, max_depth=4, title=""):
     by = {n["name"]: n for n in nodes}
     pos = {}
@@ -253,7 +250,7 @@ if main:
     fig.savefig(FIGURES / "tree_catsdogs.pdf")
     plt.close(fig)
 
-# ------------------------------------------------------------------ CIFAR-10 class hierarchy with per-split tree sizes
+# CIFAR-10 class hierarchy
 main = trees.get(f"cifar10_split_gated_w{W}")
 if main:
     from treenet.tree import spectral_hierarchy
@@ -297,7 +294,7 @@ if main:
     fig.savefig(FIGURES / "hierarchy_cifar10.pdf")
     plt.close(fig)
 
-# ------------------------------------------------------------------ receptive-field centrality by depth
+# receptive-field centrality by depth
 if (RESULTS / "receptive_fields.json").exists():
     rf = load_json("receptive_fields")
     bins = [(0, 0, "0"), (1, 1, "1"), (2, 2, "2"), (3, 5, "3-5"), (6, 10, "6-10"), (11, 99, "11+")]

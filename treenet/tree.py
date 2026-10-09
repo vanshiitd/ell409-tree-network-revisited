@@ -1,26 +1,10 @@
-"""Tree-type network whose nodes are small neural networks (Jayadeva's construction, generalised).
+"""Tree-type network with a small neural network at every node (after Jayadeva).
 
-Every node v owns a sample set S_v and binary targets t_v, and fits a small network g_v on the frozen
-trunk features. Its training samples fall into the four categories of Table I of the original paper:
+A node g fits the frozen trunk features. Its samples fall into C1 (g=0, t=0), C2 (g=1, t=1),
+C3 (g=0, t=1, a miss) and C4 (g=1, t=0, a false alarm). Child A corrects C3 and child B corrects C4.
 
-    C1: g=0, t=0 (correct)   C2: g=1, t=1 (correct)   C3: g=0, t=1 (miss)   C4: g=1, t=0 (false alarm)
-
-Child A corrects C3 and child B corrects C4. Two ways of training the children are implemented:
-
-  variant="faithful"  -- the construction used in the first assignment: A and B are trained on ALL of S_v,
-                         A with target 1 on C3 and 0 elsewhere, B with target 1 on C4 and 0 elsewhere.
-                         Prediction: y = (g OR A) AND NOT B.
-
-  variant="gated"     -- uses the "don't care" (X) entries of Table II exactly. A's output only matters
-                         where g=0 and B's only where g=1, so A is trained on {g=0} = C1 u C3 with the true
-                         labels and B on {g=1} = C2 u C4 with flipped labels. Prediction:
-                         y = A(x) if g(x)=0 else NOT B(x).
-                         The children's sample sets PARTITION S_v, so each level of the tree costs one pass
-                         over the data instead of one pass per node, and class imbalance at deep nodes is
-                         milder.
-
-Both variants reach zero training error when allowed to grow (a node that can isolate one point always
-makes progress), which is the overfitting regime the assignment asks for.
+variant="faithful": A and B are trained on all of the parent's samples, y = (g or A) and not B.
+variant="gated": A only sees g=0 and B only g=1 (with flipped labels), y = A(x) if g(x)=0 else not B(x).
 """
 import math
 import time
@@ -32,11 +16,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-# ----------------------------------------------------------------------------------------- node
 class NodeNet(nn.Module):
-    """A small neural network on the trunk's 64x8x8 feature map:
-         1x1 conv (64 -> k) -> ReLU -> flatten (64k) -> linear (h) -> ReLU -> linear (1)
-       with h = width and k = ceil(width / 4)."""
+    """1x1 conv (64 -> k) -> ReLU -> linear (h) -> ReLU -> linear (1), with h = width, k = ceil(width / 4)."""
 
     def __init__(self, width=16, c_in=64, spatial=8):
         super().__init__()
@@ -56,19 +37,17 @@ def count_params(m):
 
 
 def calibrate(z, t):
-    """Error-minimising threshold on the node's logits (the paper's 'minimise the number of
-    misclassified samples'), restricted to non-constant decisions so the node always splits its set.
-    Returns (threshold tau, errors). The node then predicts z > tau."""
+    """Threshold on the logits that minimises training errors, excluding constant outputs.
+    Returns (tau, errors); the node predicts z > tau."""
     order = torch.argsort(z, descending=True)
     zs, ts = z[order], t[order]
     n, n_pos = len(t), t.sum()
-    tp = torch.cumsum(ts, 0)                       # predicting the top-k as positive
+    tp = torch.cumsum(ts, 0)
     k = torch.arange(1, n + 1, device=z.device, dtype=z.dtype)
-    errors = (n_pos - tp) + (k - tp)               # misses + false alarms
+    errors = (n_pos - tp) + (k - tp)
     errors = errors[:-1]                           # exclude "all positive" (constant)
     if len(errors) == 0:
         return z.min() - 1, int(min(n_pos.item(), n - n_pos.item()))
-    # thresholds only between distinct logits
     valid = zs[:-1] > zs[1:]
     errors = torch.where(valid, errors, torch.full_like(errors, float("inf")))
     j = int(torch.argmin(errors).item())
@@ -81,9 +60,7 @@ def calibrate(z, t):
 
 
 def train_node(Fx, t, width, seed=0, lr=3e-3, bs=512, max_rounds=120, patience=20, min_steps=20):
-    """Fit one node to (Fx, t): class-balanced logistic loss for the ranking, then an error-minimising
-    threshold (calibrate). Trains until the node makes no training errors or stops improving.
-    Fx: (n, 64, 8, 8) float16 tensor on the device, t: (n,) float tensor in {0,1}.
+    """Fit one node with a class-balanced logistic loss, then calibrate its threshold.
     Returns (net, pred_bool, n_errors, rounds_used)."""
     n = len(t)
     torch.manual_seed(seed)
@@ -130,21 +107,20 @@ def node_logit(net, Fx, bs=8192):
     return torch.cat([net(Fx[k:k + bs].float()) for k in range(0, len(Fx), bs)])
 
 
-# ----------------------------------------------------------------------------------------- tree
 @dataclass
 class TreeNode:
     name: str
     depth: int
-    n: int = 0                 # training samples seen by the node
+    n: int = 0
     n_pos: int = 0
-    errors: int = 0            # node's own training errors (before its children correct them)
-    const: int = None          # set for a pure sample set: constant output, no network
+    errors: int = 0
+    const: int = None          # pure sample set: constant output, no network
     net: NodeNet = None
     A: "TreeNode" = None
     B: "TreeNode" = None
     rounds: int = 0
     seconds: float = 0.0
-    idx: np.ndarray = field(default=None, repr=False)   # global indices of the node's training samples
+    idx: np.ndarray = field(default=None, repr=False)
     target: np.ndarray = field(default=None, repr=False)
 
     def nodes(self):
@@ -171,9 +147,7 @@ class TreeTypeNetwork:
         d["log"] = None
         return d
 
-    # ---------------------------------------------------------------- training
     def fit(self, Fx, y, idx=None):
-        """Fx: (N,64,8,8) float16 tensor on device; y: (N,) {0,1} numpy/tensor; idx: optional global indices."""
         t0 = time.time()
         y = torch.as_tensor(np.asarray(y), dtype=torch.float32, device=Fx.device)
         idx = np.arange(len(y)) if idx is None else np.asarray(idx)
@@ -185,14 +159,14 @@ class TreeTypeNetwork:
         node = TreeNode(name=name, depth=depth, n=len(t), n_pos=int(t.sum().item()))
         if self.keep_indices:
             node.idx, node.target = idx, t.cpu().numpy().astype(np.int8)
-        if node.n_pos in (0, node.n):                         # pure set: a constant unit suffices
+        if node.n_pos in (0, node.n):
             node.const = int(node.n_pos > 0)
             return node
         t0 = time.time()
         seed = self.seed * 100003 + self._count
         self._count += 1
         net, pred, err, rounds = train_node(Fx, t, self.width, seed=seed)
-        for retry in range(1, 6):                               # constant output (e.g. a dead ReLU): retry
+        for retry in range(1, 6):                               # constant output, e.g. a dead ReLU
             if not (bool(pred.all()) or not bool(pred.any())):
                 break
             net, pred, err, rounds = train_node(Fx, t, self.width, seed=seed + 7 * retry,
@@ -201,7 +175,7 @@ class TreeTypeNetwork:
         if self.log and depth <= 2:
             self.log(f"      node {name:<8} n={node.n:<6} pos={node.n_pos:<6} errors={err:<5} "
                      f"({node.seconds:.1f}s)")
-        # a node that outputs a constant hands its children the same problem again -> stop there
+        # a constant node would hand its children the same problem, so stop here
         no_progress = err > 0 and (bool(pred.all()) or not bool(pred.any()))
         if no_progress and self.log:
             self.log(f"      node {name}: no progress (n={node.n}, pos={node.n_pos}, errors={err})")
@@ -210,9 +184,9 @@ class TreeTypeNetwork:
         tb = t > 0.5
         if self.variant == "gated":
             mA, mB = ~pred, pred
-            if (tb & mA).any():                                # C3 non-empty -> child A on {g=0}
+            if (tb & mA).any():
                 node.A = self._grow(Fx[mA], t[mA], idx[mA.cpu().numpy()], depth + 1, name + "A")
-            if (~tb & mB).any():                               # C4 non-empty -> child B on {g=1}
+            if (~tb & mB).any():
                 node.B = self._grow(Fx[mB], 1 - t[mB], idx[mB.cpu().numpy()], depth + 1, name + "B")
         else:
             c3, c4 = (~pred) & tb, pred & ~tb
@@ -222,10 +196,8 @@ class TreeTypeNetwork:
                 node.B = self._grow(Fx, c4.float(), idx, depth + 1, name + "B")
         return node
 
-    # ---------------------------------------------------------------- inference
     @torch.no_grad()
     def predict(self, Fx, max_depth=None):
-        """Boolean predictions; max_depth truncates the tree (nodes at that depth act as leaves)."""
         cap = self.max_depth if max_depth is None else max_depth
         return self._predict(self.root, Fx, cap)
 
@@ -250,7 +222,6 @@ class TreeTypeNetwork:
         b = self._predict(node.B, Fx, cap) if node.B is not None else torch.zeros_like(g)
         return (g | a) & ~b
 
-    # ---------------------------------------------------------------- bookkeeping
     def nodes(self, max_depth=None):
         cap = self.max_depth if max_depth is None else max_depth
         return [n for n in self.root.nodes() if n.depth <= cap]
@@ -267,20 +238,16 @@ class TreeTypeNetwork:
                     params=self.n_params(), fit_seconds=round(getattr(self, "fit_seconds", 0.0), 1),
                     root_errors=self.root.errors, width=self.width, variant=self.variant)
 
-    # ---------------------------------------------------------------- pruning
     @torch.no_grad()
     def prune(self, Fv, yv):
-        """Reduced-error pruning (bottom-up): replace a node's subtree by the node itself whenever that does
-        not lower accuracy on the validation samples that reach it. Only for the gated variant, whose
-        routing makes the samples reaching each node well defined."""
+        """Reduced-error pruning, bottom-up. Gated variant only."""
         assert self.variant == "gated"
         yv = torch.as_tensor(np.asarray(yv), dtype=torch.bool, device=Fv.device)
-        removed = self._prune(self.root, Fv, yv)
-        return removed
+        return self._prune(self.root, Fv, yv)
 
     def _prune(self, node, Fv, yv):
         if node.const is not None or (node.A is None and node.B is None) or len(Fv) == 0:
-            if len(Fv) == 0 and (node.A is not None or node.B is not None):   # no validation evidence
+            if len(Fv) == 0 and (node.A is not None or node.B is not None):
                 k = len(node.nodes()) - 1
                 node.A = node.B = None
                 return k
@@ -300,10 +267,9 @@ class TreeTypeNetwork:
         return removed
 
 
-# ----------------------------------------------------------------------------- multiclass
 def spectral_hierarchy(confusion, classes=None):
-    """Recursively bisect the classes so that the most-confused classes stay together (Fiedler vector of
-    the normalised Laplacian of the symmetrised confusion graph). Returns nested tuples."""
+    """Recursively bisect the classes along the Fiedler vector of the confusion graph, keeping
+    confused classes together. Returns nested tuples."""
     C = np.asarray(confusion, dtype=float)
     classes = list(range(len(C))) if classes is None else list(classes)
     if len(classes) == 1:
@@ -319,7 +285,7 @@ def spectral_hierarchy(confusion, classes=None):
     w, v = np.linalg.eigh(L)
     f = v[:, 1] / np.sqrt(d)
     order = np.argsort(f)
-    # choose the cut along the Fiedler ordering that minimises the normalised cut, sides of size >= 2
+    # best normalised cut along the Fiedler ordering, sides of size >= 2
     best, best_k = None, None
     for k in range(1, len(classes)):
         if min(k, len(classes) - k) < min(2, len(classes) // 2):
@@ -345,10 +311,8 @@ def hierarchy_str(h, names):
 
 
 class HierarchicalTreeNetwork:
-    """Multiclass tree (Section 5.3 of the first report): a binary class hierarchy whose every split is a
-    binary tree-type network trained on the samples of the classes below it. 100% training accuracy at
-    every split implies 100% training accuracy overall, because every training sample is routed correctly
-    at every level."""
+    """Multiclass tree: a binary class hierarchy where each split is a TreeTypeNetwork trained on the
+    samples of the classes below it."""
 
     def __init__(self, hierarchy, width=16, variant="gated", max_depth=40, seed=0, log=None):
         self.h, self.width, self.variant, self.max_depth, self.seed, self.log = \
@@ -411,7 +375,6 @@ class HierarchicalTreeNetwork:
                     width=self.width, variant=self.variant)
 
     def prune(self, Fv, yv):
-        """Prune each split's tree on the validation samples whose true class belongs to that split."""
         yv = np.asarray(yv)
         removed = 0
         for key, tree in self.splits.items():

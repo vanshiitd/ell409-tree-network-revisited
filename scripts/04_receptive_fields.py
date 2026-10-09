@@ -1,15 +1,7 @@
-"""Step 4: receptive fields of the tree's nodes.
+"""Step 4: receptive fields of the nodes in the width-8 gated trees.
 
-For every node of the width-8 gated trees (split trunk) we route the training samples through the tree to
-recover each node's own training set S_v and targets t_v, then compute
-
-  * Grad-CAM at the trunk tap (8x8): where in the image the node's decision comes from,
-  * a spatial-concentration score: share of Grad-CAM mass in the central 4x4 cells (of 8x8),
-  * activation maximisation through the frozen trunk: the input the node responds to most,
-  * the node's most strongly activating training images (with Grad-CAM overlays),
-  * for CIFAR-10, which classes the node must fire on.
-
-Outputs: figures/rf_<dataset>.pdf, figures/rf_centrality.pdf, results/receptive_fields.json
+Routes the training samples through each tree, then computes Grad-CAM at the trunk tap, the share of
+Grad-CAM mass in the central 4x4 cells, an activation-maximisation input, and the top activating images.
 """
 import sys
 from pathlib import Path
@@ -38,7 +30,7 @@ out = {}
 
 
 def route(tree, Fx, t):
-    """Training set (row indices into Fx) and targets of every node of a gated tree."""
+    """Rows and targets that reach each node of a gated tree."""
     sets = {}
 
     def rec(node, rows, tt):
@@ -76,7 +68,7 @@ def gradcam(trunk, mu, sd, net, X_uint8):
 
 
 def activation_max(trunk, mu, sd, net, size, steps=300, seed=0):
-    """Input that maximises the node's logit (jitter + L2 + total-variation regularisation)."""
+    """Input that maximises the node's logit, with jitter, L2 and total-variation penalties."""
     torch.manual_seed(seed)
     x = (0.1 * torch.randn(1, 3, size, size, device=dev)).requires_grad_(True)
     opt = torch.optim.Adam([x], lr=0.05)
@@ -96,7 +88,7 @@ def activation_max(trunk, mu, sd, net, size, steps=300, seed=0):
 
 
 def centrality(cams):
-    """Share of Grad-CAM mass in the central 4x4 block of the 8x8 grid (uniform map: 0.25)."""
+    """Share of Grad-CAM mass in the central 4x4 block (0.25 for a uniform map)."""
     return cams[:, 2:6, 2:6].sum((1, 2))
 
 
@@ -155,7 +147,7 @@ for dataset in (sys.argv[1:] or ("catsdogs", "cifar10")):
     out[dataset] = records
     log(f"{dataset}: {len(records)} nodes analysed, {len(panels)} shown")
 
-    # ---- figure: one row per selected node
+    # figure: one row per selected node
     panels = panels[:7]
     ntop = 5
     fig, axes = plt.subplots(len(panels), 2 + ntop, figsize=(7.0, 1.12 * len(panels) + 0.3),
@@ -197,7 +189,7 @@ for dataset in (sys.argv[1:] or ("catsdogs", "cifar10")):
     plt.close(fig)
     log(f"  wrote figures/rf_{dataset}.pdf")
 
-# ---- figure: spatial concentration vs depth
+# centrality vs depth
 fig, axes = plt.subplots(1, 2, figsize=(6.6, 2.4), sharey=True)
 for ax, dataset, title in zip(axes, ("catsdogs", "cifar10"), ("(a) Cats vs Dogs", "(b) CIFAR-10 (all 9 splits)")):
     pts = [(d, c, n) for ds, d, c, n in all_cent if ds == dataset and not np.isnan(c)]
@@ -209,7 +201,7 @@ for ax, dataset, title in zip(axes, ("catsdogs", "cifar10"), ("(a) Cats vs Dogs"
     for dep in np.unique(dd):
         ax.plot([dep - 0.3, dep + 0.3], [np.median(cc[dd == dep])] * 2, color=ORANGE, lw=2)
     ax.axhline(0.25, color=MUTED, ls=":", lw=0.9)
-    ax.text(ax.get_xlim()[1] if False else dd.max() + 0.2, 0.255, "uniform", color=INK2, fontsize=7, va="bottom", ha="right")
+    ax.text(dd.max() + 0.2, 0.255, "uniform", color=INK2, fontsize=7, va="bottom", ha="right")
     ax.set_xlabel("node depth")
     ax.set_title(title, loc="left", color=INK)
 axes[0].set_ylabel("Grad-CAM mass in central 4x4")

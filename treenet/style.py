@@ -1,5 +1,4 @@
-"""Matplotlib style shared by all figures: colour-blind-safe categorical palette in a fixed order,
-recessive grid and axes."""
+"""Matplotlib style and colours shared by the figures."""
 import matplotlib.pyplot as plt
 
 BLUE, ORANGE, AQUA, YELLOW = "#2a78d6", "#eb6834", "#1baf7a", "#eda100"

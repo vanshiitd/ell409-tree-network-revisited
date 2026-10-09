@@ -1,12 +1,6 @@
-"""Dataset loading, caching and splitting for CIFAR-10 and Microsoft's Kaggle Cats vs Dogs.
+"""Loading, caching and splitting CIFAR-10 and Cats vs Dogs.
 
-Both datasets are converted once to uint8 numpy arrays (N, H, W, 3) and cached in data/*.npz.
-Every image is used in exactly one of four disjoint splits:
-
-    trunk  -- trains the shared feature extractor (never seen by the tree)
-    tree   -- trains the tree-type network
-    val    -- model selection / reduced-error pruning
-    test   -- reported test accuracy only
+Images are cached as uint8 arrays in data/*.npz and split into disjoint trunk / tree / val / test sets.
 """
 import os
 import pickle
@@ -22,16 +16,13 @@ CIFAR_CLASSES = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog",
 CATSDOGS_CLASSES = ["cat", "dog"]
 
 
-# ----------------------------------------------------------------------------- CIFAR-10
 def load_cifar10():
-    """Returns (X_train, y_train, X_test, y_test) as uint8 (N,32,32,3) / int64."""
     cache = DATA / "cifar10.npz"
     if cache.exists():
         d = np.load(cache)
         return d["Xtr"], d["ytr"], d["Xte"], d["yte"]
     base = DATA / "cifar-10-batches-py"
     if base.exists() or (DATA / "cifar-10-python.tar.gz").exists():
-        # original python pickles from https://www.cs.toronto.edu/~kriz/cifar.html
         if not base.exists():
             with tarfile.open(DATA / "cifar-10-python.tar.gz") as t:
                 t.extractall(DATA)
@@ -47,7 +38,7 @@ def load_cifar10():
         ytr = np.concatenate([p[1] for p in parts])
         Xte, yte = batch("test_batch")
     else:
-        # identical data from the Hugging Face mirror uoft-cs/cifar10 (PNG bytes in parquet files)
+        # Hugging Face mirror uoft-cs/cifar10
         import io
         import pyarrow.parquet as pq
         from PIL import Image
@@ -63,7 +54,6 @@ def load_cifar10():
     return Xtr, ytr, Xte, yte
 
 
-# ----------------------------------------------------------------------------- Cats vs Dogs
 def _load_one(args):
     path, size = args
     from PIL import Image
@@ -73,16 +63,15 @@ def _load_one(args):
             w, h = im.size
             if min(w, h) < 16:
                 return None
-            s = min(w, h)                                   # centre square crop, then resize
+            s = min(w, h)                                   # centre crop, then resize
             left, top = (w - s) // 2, (h - s) // 2
             im = im.crop((left, top, left + s, top + s)).resize((size, size), Image.BILINEAR)
             return np.asarray(im, dtype=np.uint8)
-    except Exception:                                       # the archive contains a few corrupt files
+    except Exception:                                       # a few files in the archive are corrupt
         return None
 
 
 def load_catsdogs(size=64):
-    """Returns (X, y) for all decodable images, y = 0 cat / 1 dog."""
     cache = DATA / f"catsdogs{size}.npz"
     if cache.exists():
         d = np.load(cache)
@@ -105,9 +94,7 @@ def load_catsdogs(size=64):
     return X, y
 
 
-# ----------------------------------------------------------------------------- splits
 def get_splits(dataset, seed=0):
-    """Returns dict split -> (X uint8, y). Splits are disjoint and stratified."""
     rng = np.random.default_rng(seed)
     if dataset == "cifar10":
         Xtr, ytr, Xte, yte = load_cifar10()

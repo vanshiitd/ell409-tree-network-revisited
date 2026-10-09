@@ -1,11 +1,7 @@
-"""Step 1: prepare both datasets, train the shared trunks, and cache frozen trunk features.
+"""Step 1: train the trunks and cache their features.
 
-Trunks (each trained on data the tree never sees):
-  split    -- supervised CNN trained on the dataset's own 'trunk' split (main setting)
-  random   -- the same architecture, untrained (BatchNorm statistics calibrated only)
-  transfer -- Cats vs Dogs only: the CIFAR-10 'split' trunk applied to images resized to 32x32
-
-Outputs: data/feats_<dataset>_<trunk>.npz, results/trunks/*.pt, results/trunks.json
+split: trained on the dataset's trunk split. random: untrained. transfer: the CIFAR-10 trunk applied to
+Cats vs Dogs resized to 32x32.
 """
 import sys
 from pathlib import Path
@@ -27,7 +23,7 @@ summary = {}
 
 def cache_features(dataset, name, net, splits, resize_to=None):
     feats = {s: extract_tap(net, splits[s][0], dev, resize_to=resize_to) for s in ("tree", "val", "test")}
-    # standardise each of the 64 channels with statistics of the tree split
+    # standardise per channel with the tree split's statistics
     mu = feats["tree"].astype(np.float32).mean(axis=(0, 2, 3), keepdims=True)
     sd = feats["tree"].astype(np.float32).std(axis=(0, 2, 3), keepdims=True) + 1e-6
     out = {}
@@ -48,7 +44,7 @@ for dataset, n_classes in (("cifar10", 10), ("catsdogs", 2)):
     Xtr, ytr = sp["trunk"]
 
     log("  training the supervised trunk on the trunk split")
-    net = train_trunk(Xtr, ytr, n_classes, dev, epochs=40 if dataset == "cifar10" else 40, log=log)
+    net = train_trunk(Xtr, ytr, n_classes, dev, epochs=40, log=log)
     torch.save(net.state_dict(), RESULTS / "trunks" / f"{dataset}_split.pt")
     trunks[dataset] = net
     accs = {}

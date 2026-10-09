@@ -1,15 +1,7 @@
-"""Step 2: grow tree-type networks of small-NN nodes on frozen trunk features until 100% training accuracy.
+"""Step 2: grow the trees until they fit the training set.
 
-For each dataset and trunk, and for both child-training variants (faithful / gated), records
-train / val / test accuracy, tree size, accuracy as a function of the depth cap (growth curve),
-reduced-error pruning on the validation split, and two baselines:
-  * the trunk's own end-to-end classifier (trained on the trunk split), and
-  * a single capacity-matched network on the same features ("one big node").
-
-CIFAR-10 uses the hierarchical class-grouping tree (9 binary splits found by spectral bisection of the
-trunk's validation confusion matrix); Cats vs Dogs uses one binary tree.
-
-Outputs: results/trees.json, results/trees/<config>.pt, results/02_trees.log
+Records accuracy, size, the growth curve over depth, validation pruning, and a single network with the
+same number of parameters as a baseline. CIFAR-10 uses the class hierarchy, Cats vs Dogs one binary tree.
 """
 import argparse
 import copy
@@ -47,7 +39,7 @@ CONFIGS = [
 
 
 class FlatNet(nn.Module):
-    """Same architecture as a tree node but with n_out outputs: the 'one big node' baseline."""
+    """Node architecture with n_out outputs, used as the single-network baseline."""
 
     def __init__(self, width, n_out, c_in=64, spatial=8):
         super().__init__()
@@ -83,7 +75,7 @@ def train_flat(Fx, y, n_out, target_params, epochs=200, bs=512, lr=3e-3, seed=0)
             opt.zero_grad(set_to_none=True)
             loss.backward()
             opt.step()
-        loss.item()                    # sync once per epoch: MPS otherwise queues work until it runs out of memory
+        loss.item()                    # sync once per epoch, otherwise MPS runs out of memory
     net.eval()
     return net, width
 
@@ -138,7 +130,7 @@ for dataset, trunk, variant in CONFIGS:
     log(f"  train {r['train']:.4f}  val {r['val']:.4f}  test {r['test']:.4f}  {summ['nodes']} nodes, "
         f"depth {summ['depth']}, {summ['params']} params, {r['seconds']}s")
 
-    # growth curve: accuracy and size when the tree is truncated at depth d
+    # growth curve over depth
     growth = []
     for d in range(0, max_d + 1):
         s = model.summary(d) if dataset == "cifar10" else dict(nodes=len(model.nodes(d)),
@@ -147,14 +139,14 @@ for dataset, trunk, variant in CONFIGS:
                            val=acc(model, Fva, yva, d), test=acc(model, Fte, yte, d)))
     r["growth"] = growth
 
-    # per-node record (for diagrams and analysis)
+    # per-node record
     trees = model.splits if dataset == "cifar10" else {"T": model}
     r["nodes"] = {k: [dict(name=n.name, depth=n.depth, n=n.n, n_pos=n.n_pos, errors=n.errors,
                            const=n.const, rounds=n.rounds, seconds=round(n.seconds, 2))
                       for n in t.root.nodes()] for k, t in trees.items()}
     torch.save(model, RESULTS / "trees" / f"{name}.pt")
 
-    # reduced-error pruning on the validation split
+    # validation pruning
     if variant == "gated":
         pm = copy.deepcopy(model)
         removed = pm.prune(Fva, yva)
@@ -165,7 +157,7 @@ for dataset, trunk, variant in CONFIGS:
             f"train {r['pruned']['train']:.4f} test {r['pruned']['test']:.4f}")
         torch.save(pm, RESULTS / "trees" / f"{name}_pruned.pt")
 
-    # capacity-matched single network
+    # single network with the same parameter count
     n_out = 10 if dataset == "cifar10" else 1
     fnet, fw = train_flat(Ftr, ytr, n_out, summ["params"])
     r["flat"] = dict(width=fw, params=count_params(fnet),
