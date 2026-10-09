@@ -1,0 +1,235 @@
+{
+  "catsdogs": {
+    "width_sweep": [
+      {
+        "width": 1,
+        "node_params": 132,
+        "nodes": 91,
+        "networks": 87,
+        "params": 11488,
+        "depth": 16,
+        "train": 0.9999166458281237,
+        "test": 0.8208,
+        "pruned": {
+          "nodes": 1,
+          "params": 132,
+          "train": 0.8781362007168458,
+          "test": 0.863
+        },
+        "seconds": 94.2
+      },
+      {
+        "width": 2,
+        "node_params": 198,
+        "nodes": 151,
+        "networks": 144,
+        "params": 28519,
+        "depth": 40,
+        "train": 0.9852463115778944,
+        "test": 0.8376,
+        "pruned": {
+          "nodes": 5,
+          "params": 990,
+          "train": 0.8950570976077352,
+          "test": 0.8702
+        },
+        "seconds": 143.8
+      },
+      {
+        "width": 4,
+        "node_params": 330,
+        "nodes": 139,
+        "networks": 134,
+        "params": 44225,
+        "depth": 40,
+        "train": 0.9674085187963658,
+        "test": 0.8424,
+        "pruned": {
+          "nodes": 20,
+          "params": 6600,
+          "train": 0.9212303075768942,
+          "test": 0.8598
+        },
+        "seconds": 153.4
+      },
+      {
+        "width": 8,
+        "node_params": 1171,
+        "nodes": 11,
+        "networks": 10,
+        "params": 11711,
+        "depth": 5,
+        "train": 0.9999166458281237,
+        "test": 0.8608,
+        "pruned": {
+          "nodes": 1,
+          "params": 1171,
+          "train": 0.9158956405768108,
+          "test": 0.8878
+        },
+        "seconds": 18.8
+      },
+      {
+        "width": 16,
+        "node_params": 4389,
+        "nodes": 3,
+        "networks": 3,
+        "params": 13167,
+        "depth": 2,
+        "train": 0.9999166458281237,
+        "test": 0.878,
+        "pruned": {
+          "nodes": 1,
+          "params": 4389,
+          "train": 0.9999166458281237,
+          "test": 0.878
+        },
+        "seconds": 12.1
+      },
+      {
+        "width": 32,
+        "node_params": 16969,
+        "nodes": 3,
+        "networks": 3,
+        "params": 50907,
+        "depth": 2,
+        "train": 0.9999166458281237,
+        "test": 0.8942,
+        "pruned": {
+          "nodes": 1,
+          "params": 16969,
+          "train": 0.9999166458281237,
+          "test": 0.8942
+        },
+        "seconds": 9.2
+      },
+      {
+        "width": 64,
+        "node_params": 66705,
+        "nodes": 3,
+        "networks": 3,
+        "params": 200115,
+        "depth": 2,
+        "train": 0.9999166458281237,
+        "test": 0.8888,
+        "pruned": {
+          "nodes": 1,
+          "params": 66705,
+          "train": 0.9999166458281237,
+          "test": 0.8888
+        },
+        "seconds": 8.9
+      }
+    ],
+    "weight_pruning": {
+      "width": 8,
+      "nodes": 10,
+      "dense_params": 11710,
+      "nonzero_params": 8602,
+      "sparsity_hist": [
+        7,
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "train_before": 0.9999166458281237,
+      "test_before": 0.8608,
+      "train_after": 0.9999166458281237,
+      "test_after": 0.861,
+      "seconds": 7.7
+    }
+  },
+  "cifar10": {
+    "width_sweep": [
+      {
+        "width": 8,
+        "node_params": 1171,
+        "nodes": 96,
+        "networks": 94,
+        "params": 110076,
+        "depth": 23,
+        "train": 1.0,
+        "test": 0.6667,
+        "pruned": {
+          "nodes": 13,
+          "params": 15223,
+          "train": 0.8330333333333333,
+          "test": 0.7142
+        },
+        "seconds": 1959.1
+      },
+      {
+        "width": 16,
+        "node_params": 4389,
+        "nodes": 14,
+        "networks": 14,
+        "params": 61446,
+        "depth": 1,
+        "train": 1.0,
+        "test": 0.7073,
+        "pruned": {
+          "nodes": 9,
+          "params": 39501,
+          "train": 0.9913,
+          "test": 0.7071
+        },
+        "seconds": 62.8
+      },
+      {
+        "width": 32,
+        "node_params": 16969,
+        "nodes": 9,
+        "networks": 9,
+        "params": 152721,
+        "depth": 0,
+        "train": 1.0,
+        "test": 0.7435,
+        "pruned": {
+          "nodes": 9,
+          "params": 152721,
+          "train": 1.0,
+          "test": 0.7435
+        },
+        "seconds": 24.6
+      },
+      {
+        "width": 64,
+        "node_params": 66705,
+        "nodes": 9,
+        "networks": 9,
+        "params": 600345,
+        "depth": 0,
+        "train": 1.0,
+        "test": 0.7594,
+        "pruned": {
+          "nodes": 9,
+          "params": 600345,
+          "train": 1.0,
+          "test": 0.7594
+        },
+        "seconds": 16.3
+      }
+    ],
+    "weight_pruning": {
+      "width": 8,
+      "nodes": 94,
+      "dense_params": 110074,
+      "nonzero_params": 68100,
+      "sparsity_hist": [
+        49,
+        5,
+        21,
+        7,
+        4,
+        8
+      ],
+      "train_before": 1.0,
+      "test_before": 0.6667,
+      "train_after": 1.0,
+      "test_after": 0.6682,
+      "seconds": 73.7
+    }
+  }
+}

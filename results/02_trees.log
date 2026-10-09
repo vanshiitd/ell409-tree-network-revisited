@@ -1,0 +1,255 @@
+[    0.0s] == catsdogs_split_gated_w8
+[    6.3s]       node r        n=11997  pos=5931   errors=1009  (6.1s)
+[    9.9s]       node rA       n=6111   pos=527    errors=159   (3.5s)
+[   11.3s]       node rAA      n=5523   pos=49     errors=0     (1.5s)
+[   11.7s]       node rAB      n=588    pos=110    errors=0     (0.4s)
+[   15.3s]       node rB       n=5886   pos=482    errors=73    (3.5s)
+[   16.8s]       node rBA      n=5363   pos=16     errors=1     (1.5s)
+[   18.6s]       node rBAAAB: no progress (n=3, pos=2, errors=1)
+[   18.9s]       node rBB      n=523    pos=57     errors=0     (0.2s)
+[   19.0s]   train 0.9999  val 0.8615  test 0.8608  11 nodes, depth 5, 11711 params, 18.8s
+[   19.4s]   pruned: -10 nodes -> 1 nodes, 1171 params; train 0.9159 test 0.8878
+[   26.4s]   capacity-matched single network (width 25, 11706 params): train 0.9999 test 0.8890
+[   26.4s] == catsdogs_split_faithful_w8
+[   31.0s]       node r        n=11997  pos=5931   errors=1009  (4.5s)
+[   32.9s]       node rA       n=11997  pos=527    errors=520   (1.9s)
+[   34.1s]       node rAA      n=11997  pos=500    errors=498   (1.2s)
+[   67.2s]       node rAB      n=11997  pos=20     errors=0     (3.8s)
+[   70.7s]       node rB       n=11997  pos=482    errors=462   (3.5s)
+[   72.6s]       node rBA      n=11997  pos=428    errors=424   (1.9s)
+[  159.9s]       node rBB      n=11997  pos=34     errors=6     (5.0s)
+[  161.7s]   train 0.9998  val 0.8480  test 0.8442  104 nodes, depth 40, 121784 params, 135.2s
+[  197.4s]   capacity-matched single network (width 85, 121281 params): train 0.9999 test 0.8884
+[  197.5s] == catsdogs_transfer_gated_w8
+[  203.4s]       node r        n=11997  pos=5931   errors=1438  (5.8s)
+[  208.2s]       node rA       n=6134   pos=753    errors=404   (4.8s)
+[  209.2s]       node rAA      n=5139   pos=81     errors=78    (0.9s)
+[  214.0s]       node rAB      n=995    pos=323    errors=1     (2.1s)
+[  215.4s]       node rABAB: no progress (n=3, pos=2, errors=1)
+[  220.0s]       node rB       n=5863   pos=685    errors=339   (4.6s)
+[  223.7s]       node rBA      n=5011   pos=86     errors=0     (3.7s)
+[  224.5s]       node rBB      n=852    pos=253    errors=0     (0.8s)
+[  224.6s]   train 0.9999  val 0.7750  test 0.7682  12 nodes, depth 4, 14052 params, 27.0s
+[  225.1s]   pruned: -11 nodes -> 1 nodes, 1171 params; train 0.8801 test 0.8146
+[  234.2s]   capacity-matched single network (width 28, 13056 params): train 0.9999 test 0.8194
+[  234.3s] == catsdogs_random_gated_w8
+[  240.5s]       node r        n=11997  pos=5931   errors=2635  (6.1s)
+[  245.6s]       node rA       n=6599   pos=1584   errors=1053  (5.1s)
+[  250.5s]       node rAA      n=5102   pos=570    errors=163   (4.9s)
+[  259.5s]       node rAB      n=1497   pos=483    errors=1     (4.4s)
+[  261.9s]       node rABAB: no progress (n=3, pos=2, errors=1)
+[  266.8s]       node rB       n=5398   pos=1051   errors=550   (4.9s)
+[  267.7s]       node rBA      n=4235   pos=219    errors=218   (0.9s)
+[  273.2s]       node rBB      n=1163   pos=331    errors=9     (1.8s)
+[  273.6s]   train 0.9999  val 0.6385  test 0.6272  14 nodes, depth 4, 16394 params, 39.2s
+[  274.0s]   pruned: -13 nodes -> 1 nodes, 1171 params; train 0.7804 test 0.6630
+[  283.0s]   capacity-matched single network (width 30, 15941 params): train 0.9641 test 0.6812
+[  283.0s] == cifar10_split_gated_w8
+[  283.2s]   class hierarchy: ((((deer | horse) | (bird | frog)) | (cat | dog)) | ((automobile | truck) | (airplane | ship)))
+[  283.2s]     split H: 6 vs 4 classes, 30000 samples
+[  297.6s]       node r        n=30000  pos=12057  errors=1089  (14.4s)
+[  301.7s]       node rA       n=17942  pos=544    errors=534   (4.0s)
+[  303.5s]       node rAA      n=17922  pos=529    errors=528   (1.8s)
+[  337.3s]       node rAB      n=20     pos=5      errors=0     (0.1s)
+[  343.1s]       node rB       n=12058  pos=545    errors=259   (5.8s)
+[  344.2s]       node rBA      n=11428  pos=87     errors=85    (1.0s)
+[  351.6s]       node rBB      n=630    pos=172    errors=0     (0.7s)
+[  351.6s]     split H0: 4 vs 2 classes, 17943 samples
+[  959.9s]       node r        n=17943  pos=5946   errors=2107  (608.4s)
+[ 2102.9s]       node rA       n=12416  pos=1263   errors=1110  (1142.9s)
+[ 2104.6s]       node rAA      n=11553  pos=755    errors=743   (1.5s)
+[ 2144.7s]       node rAB      n=863    pos=355    errors=1     (1.8s)
+[ 2149.6s]       node rB       n=5527   pos=844    errors=617   (4.8s)
+[ 2154.7s]       node rBA      n=4910   pos=422    errors=31    (5.0s)
+[ 2155.6s]       node rBB      n=617    pos=195    errors=0     (0.5s)
+[ 2155.6s]     split H00: 2 vs 2 classes, 11997 samples
+[ 2161.5s]       node r        n=11997  pos=5988   errors=1054  (5.8s)
+[ 2166.2s]       node rA       n=6135   pos=590    errors=63    (4.7s)
+[ 2166.9s]       node rAA      n=5508   pos=13     errors=0     (0.6s)
+[ 2167.3s]       node rAB      n=627    pos=50     errors=0     (0.4s)
+[ 2172.1s]       node rB       n=5862   pos=464    errors=20    (4.9s)
+[ 2172.4s]       node rBA      n=5386   pos=4      errors=0     (0.3s)
+[ 2172.7s]       node rBB      n=476    pos=16     errors=0     (0.3s)
+[ 2172.7s]     split H000: 1 vs 1 classes, 6009 samples
+[ 2177.5s]       node r        n=6009   pos=2981   errors=257   (4.8s)
+[ 2180.6s]       node rA       n=2949   pos=89     errors=0     (3.1s)
+[ 2183.4s]       node rB       n=3060   pos=168    errors=0     (2.7s)
+[ 2183.4s]     split H001: 1 vs 1 classes, 5988 samples
+[ 2188.4s]       node r        n=5988   pos=3019   errors=211   (5.0s)
+[ 2190.6s]       node rA       n=2978   pos=110    errors=0     (2.2s)
+[ 2192.6s]       node rB       n=3010   pos=101    errors=0     (2.0s)
+[ 2192.6s]     split H01: 1 vs 1 classes, 5946 samples
+[ 2197.9s]       node r        n=5946   pos=2995   errors=471   (5.3s)
+[ 2201.0s]       node rA       n=2916   pos=218    errors=3     (3.0s)
+[ 2201.3s]       node rAA      n=2701   pos=3      errors=0     (0.2s)
+[ 2203.7s]       node rB       n=3030   pos=253    errors=0     (2.4s)
+[ 2203.7s]     split H1: 2 vs 2 classes, 12057 samples
+[ 2210.1s]       node r        n=12057  pos=6063   errors=448   (6.4s)
+[ 2215.9s]       node rA       n=5900   pos=177    errors=1     (5.7s)
+[ 2215.9s]       node rAB      n=178    pos=1      errors=0     (0.1s)
+[ 2223.3s]       node rB       n=6157   pos=271    errors=40    (7.3s)
+[ 2223.7s]       node rBA      n=5854   pos=4      errors=0     (0.2s)
+[ 2224.1s]       node rBB      n=303    pos=36     errors=0     (0.4s)
+[ 2224.1s]     split H10: 1 vs 1 classes, 5994 samples
+[ 2229.0s]       node r        n=5994   pos=3031   errors=44    (4.9s)
+[ 2229.8s]       node rA       n=2973   pos=27     errors=0     (0.8s)
+[ 2230.3s]       node rB       n=3021   pos=17     errors=0     (0.5s)
+[ 2230.3s]     split H11: 1 vs 1 classes, 6063 samples
+[ 2234.9s]       node r        n=6063   pos=3017   errors=143   (4.6s)
+[ 2237.5s]       node rA       n=3051   pos=74     errors=0     (2.6s)
+[ 2239.5s]       node rB       n=3012   pos=69     errors=1     (2.0s)
+[ 2239.7s]       node rBA      n=2944   pos=1      errors=0     (0.1s)
+[ 2242.3s]   train 1.0000  val 0.6658  test 0.6667  96 nodes, depth 23, 110076 params, 1959.1s
+[ 2278.4s]   pruned: -83 nodes -> 13 nodes, 15223 params; train 0.8330 test 0.7142
+[ 2308.8s]   capacity-matched single network (width 80, 104590 params): train 1.0000 test 0.7673
+[ 2309.5s] == cifar10_split_faithful_w8
+[ 2309.6s]   class hierarchy: ((((deer | horse) | (bird | frog)) | (cat | dog)) | ((automobile | truck) | (airplane | ship)))
+[ 2309.6s]     split H: 6 vs 4 classes, 30000 samples
+[ 2324.1s]       node r        n=30000  pos=12057  errors=1089  (14.4s)
+[ 2327.2s]       node rA       n=30000  pos=544    errors=543   (3.1s)
+[ 2329.5s]       node rAA      n=30000  pos=543    errors=544   (2.4s)
+[ 2524.7s]       node rB       n=30000  pos=545    errors=544   (3.8s)
+[ 2540.3s]       node rBA      n=30000  pos=544    errors=481   (15.6s)
+[ 2756.9s]     split H0: 4 vs 2 classes, 17943 samples
+[ 2767.9s]       node r        n=17943  pos=5946   errors=2107  (10.9s)
+[ 2771.3s]       node rA       n=17943  pos=1263   errors=1256  (3.4s)
+[ 2777.1s]       node rAA      n=17943  pos=1249   errors=1233  (5.8s)
+[ 2984.1s]       node rAB      n=17943  pos=7      errors=0     (1.3s)
+[ 2985.9s]       node rB       n=17943  pos=844    errors=843   (1.7s)
+[ 2988.2s]       node rBA      n=17943  pos=843    errors=842   (2.3s)
+[ 3185.2s]     split H00: 2 vs 2 classes, 11997 samples
+[ 3192.5s]       node r        n=11997  pos=5988   errors=1054  (7.2s)
+[ 3195.7s]       node rA       n=11997  pos=590    errors=583   (3.3s)
+[ 3202.2s]       node rAA      n=11997  pos=578    errors=448   (6.5s)
+[ 3283.8s]       node rAB      n=11997  pos=5      errors=0     (0.3s)
+[ 3286.6s]       node rB       n=11997  pos=464    errors=453   (2.8s)
+[ 3288.2s]       node rBA      n=11997  pos=450    errors=448   (1.5s)
+[ 3353.6s]       node rBB      n=11997  pos=3      errors=0     (0.3s)
+[ 3353.6s]     split H000: 1 vs 1 classes, 6009 samples
+[ 3357.2s]       node r        n=6009   pos=2981   errors=257   (3.6s)
+[ 3360.2s]       node rA       n=6009   pos=89     errors=3     (3.0s)
+[ 3360.4s]       node rAB      n=6009   pos=3      errors=0     (0.2s)
+[ 3361.1s]       node rB       n=6009   pos=168    errors=166   (0.7s)
+[ 3361.7s]       node rBA      n=6009   pos=165    errors=163   (0.7s)
+[ 3364.0s]       node rBB      n=6009   pos=1      errors=0     (0.1s)
+[ 3364.0s]     split H001: 1 vs 1 classes, 5988 samples
+[ 3367.6s]       node r        n=5988   pos=3019   errors=211   (3.6s)
+[ 3368.5s]       node rA       n=5988   pos=110    errors=108   (0.9s)
+[ 3369.2s]       node rAA      n=5988   pos=107    errors=106   (0.7s)
+[ 3372.4s]       node rAB      n=5988   pos=1      errors=0     (0.1s)
+[ 3373.0s]       node rB       n=5988   pos=101    errors=100   (0.6s)
+[ 3373.8s]       node rBA      n=5988   pos=100    errors=98    (0.7s)
+[ 3375.9s]     split H01: 1 vs 1 classes, 5946 samples
+[ 3379.5s]       node r        n=5946   pos=2995   errors=471   (3.6s)
+[ 3382.7s]       node rA       n=5946   pos=218    errors=5     (3.2s)
+[ 3382.9s]       node rAA      n=5946   pos=5      errors=0     (0.2s)
+[ 3386.4s]       node rB       n=5946   pos=253    errors=13    (3.6s)
+[ 3386.6s]       node rBA      n=5946   pos=2      errors=0     (0.2s)
+[ 3387.4s]       node rBB      n=5946   pos=11     errors=2     (0.8s)
+[ 3387.5s]     split H1: 2 vs 2 classes, 12057 samples
+[ 3391.9s]       node r        n=12057  pos=6063   errors=448   (4.5s)
+[ 3392.9s]       node rA       n=12057  pos=177    errors=176   (0.9s)
+[ 3393.7s]       node rAA      n=12057  pos=176    errors=174   (0.9s)
+[ 3404.5s]       node rB       n=12057  pos=271    errors=269   (1.5s)
+[ 3405.7s]       node rBA      n=12057  pos=269    errors=268   (1.1s)
+[ 3427.2s]     split H10: 1 vs 1 classes, 5994 samples
+[ 3430.9s]       node r        n=5994   pos=3031   errors=44    (3.6s)
+[ 3431.7s]       node rA       n=5994   pos=27     errors=0     (0.8s)
+[ 3432.7s]       node rB       n=5994   pos=17     errors=0     (1.0s)
+[ 3432.7s]     split H11: 1 vs 1 classes, 6063 samples
+[ 3436.3s]       node r        n=6063   pos=3017   errors=143   (3.6s)
+[ 3436.9s]       node rA       n=6063   pos=74     errors=73    (0.7s)
+[ 3440.0s]       node rAA      n=6063   pos=71     errors=0     (3.1s)
+[ 3440.1s]       node rAB      n=6063   pos=2      errors=0     (0.1s)
+[ 3442.7s]       node rB       n=6063   pos=69     errors=1     (2.6s)
+[ 3442.8s]       node rBB      n=6063   pos=1      errors=0     (0.1s)
+[ 3447.8s]   train 0.9516  val 0.6584  test 0.6649  453 nodes, depth 40, 530463 params, 1138.2s
+[ 3573.8s]   capacity-matched single network (width 180, 523315 params): train 0.0704 test 0.0707
+[ 3574.1s] == cifar10_random_gated_w8
+[ 3574.2s]   class hierarchy: ((((deer | horse) | (bird | frog)) | (cat | dog)) | ((automobile | truck) | (airplane | ship)))
+[ 3574.2s]     split H: 6 vs 4 classes, 30000 samples
+[ 3574.2s]     split H0: 4 vs 2 classes, 17943 samples
+[ 3574.2s]     split H00: 2 vs 2 classes, 11997 samples
+[ 3574.2s]     split H000: 1 vs 1 classes, 6009 samples
+[ 3574.2s]     split H001: 1 vs 1 classes, 5988 samples
+[ 3574.2s]     split H01: 1 vs 1 classes, 5946 samples
+[ 3574.2s]     split H1: 2 vs 2 classes, 12057 samples
+[ 3574.2s]     split H10: 1 vs 1 classes, 5994 samples
+[ 3574.2s]     split H11: 1 vs 1 classes, 6063 samples
+[ 3574.2s]   train 0.0001  val 0.0802  test 0.0893  9 nodes, depth 0, 9 params, 0.0s
+[ 3574.2s]   pruned: -0 nodes -> 9 nodes, 9 params; train 0.0001 test 0.0893
+[ 3582.1s]   capacity-matched single network (width 1, 150 params): train 0.0699 test 0.0722
+[ 3582.2s] done
+[    0.0s] == cifar10_split_faithful_w8
+[   12.6s]   capacity-matched single network (width 180, 523315 params): train 0.1015 test 0.0852
+[   12.6s] done
+[    0.0s] == cifar10_split_faithful_w8
+[   35.0s]   capacity-matched single network (width 180, 523315 params): train 1.0000 test 0.8035
+[   35.0s] done
+[    0.0s] == cifar10_random_gated_w8
+[    0.1s]   class hierarchy: ((((deer | horse) | (bird | frog)) | (cat | dog)) | ((automobile | truck) | (airplane | ship)))
+[    0.1s]     split H: 6 vs 4 classes, 30000 samples
+[   15.1s]       node r        n=30000  pos=12057  errors=2697  (14.8s)
+[   20.5s]       node rA       n=17996  pos=1375   errors=1360  (5.3s)
+[   22.8s]       node rAA      n=17935  pos=1337   errors=1332  (2.3s)
+[  146.5s]       node rAB      n=61     pos=23     errors=0     (0.1s)
+[  152.8s]       node rB       n=12004  pos=1322   errors=1118  (6.3s)
+[  154.4s]       node rBA      n=10848  pos=642    errors=635   (1.5s)
+[  174.1s]       node rBB      n=1156   pos=476    errors=3     (1.9s)
+[  174.2s]     split H0: 4 vs 2 classes, 17943 samples
+[  183.9s]       node r        n=17943  pos=5946   errors=3699  (9.6s)
+[  190.1s]       node rA       n=12380  pos=2041   errors=1727  (6.2s)
+[  194.2s]       node rAA      n=11082  pos=1235   errors=1166  (4.0s)
+[  234.2s]       node rAB      n=1298   pos=492    errors=0     (1.2s)
+[  238.2s]       node rB       n=5563   pos=1658   errors=806   (3.8s)
+[  241.8s]       node rBA      n=3871   pos=386    errors=2     (3.7s)
+[  244.0s]       node rBB      n=1692   pos=420    errors=4     (2.0s)
+[  244.0s]     split H00: 2 vs 2 classes, 11997 samples
+[  248.6s]       node r        n=11997  pos=5988   errors=2341  (4.5s)
+[  252.2s]       node rA       n=5652   pos=992    errors=471   (3.6s)
+[  255.9s]       node rAA      n=4541   pos=176    errors=1     (3.7s)
+[  258.8s]       node rAB      n=1111   pos=295    errors=10    (2.7s)
+[  262.5s]       node rB       n=6345   pos=1349   errors=785   (3.6s)
+[  263.2s]       node rBA      n=4893   pos=341    errors=340   (0.6s)
+[  270.3s]       node rBB      n=1452   pos=444    errors=1     (1.9s)
+[  270.3s]     split H000: 1 vs 1 classes, 6009 samples
+[  273.9s]       node r        n=6009   pos=2981   errors=578   (3.6s)
+[  277.7s]       node rA       n=3110   pos=330    errors=4     (3.8s)
+[  277.9s]       node rAA      n=2780   pos=2      errors=0     (0.1s)
+[  277.9s]       node rAB      n=330    pos=2      errors=0     (0.0s)
+[  279.9s]       node rB       n=2899   pos=248    errors=0     (2.0s)
+[  279.9s]     split H001: 1 vs 1 classes, 5988 samples
+[  283.6s]       node r        n=5988   pos=3019   errors=753   (3.7s)
+[  287.2s]       node rA       n=2902   pos=343    errors=2     (3.5s)
+[  287.2s]       node rAB      n=345    pos=2      errors=0     (0.0s)
+[  290.5s]       node rB       n=3086   pos=410    errors=2     (3.3s)
+[  290.6s]       node rBA      n=2678   pos=2      errors=0     (0.0s)
+[  290.6s]     split H01: 1 vs 1 classes, 5946 samples
+[  294.2s]       node r        n=5946   pos=2995   errors=1054  (3.6s)
+[  297.7s]       node rA       n=2923   pos=513    errors=4     (3.5s)
+[  297.8s]       node rAA      n=2414   pos=4      errors=0     (0.1s)
+[  301.3s]       node rB       n=3023   pos=541    errors=7     (3.5s)
+[  302.2s]       node rBA      n=2489   pos=7      errors=1     (0.8s)
+[  302.2s]     split H1: 2 vs 2 classes, 12057 samples
+[  306.8s]       node r        n=12057  pos=6063   errors=1025  (4.6s)
+[  310.9s]       node rA       n=5917   pos=474    errors=89    (4.1s)
+[  312.0s]       node rAA      n=5380   pos=13     errors=1     (1.1s)
+[  312.4s]       node rAB      n=537    pos=76     errors=0     (0.3s)
+[  313.5s]       node rB       n=6140   pos=551    errors=525   (1.1s)
+[  317.2s]       node rBA      n=6006   pos=471    errors=206   (3.6s)
+[  319.8s]       node rBB      n=134    pos=54     errors=0     (0.1s)
+[  319.8s]     split H10: 1 vs 1 classes, 5994 samples
+[  323.9s]       node r        n=5994   pos=3031   errors=753   (4.1s)
+[  326.7s]       node rA       n=2970   pos=380    errors=0     (2.8s)
+[  329.1s]       node rB       n=3024   pos=373    errors=0     (2.4s)
+[  329.1s]     split H11: 1 vs 1 classes, 6063 samples
+[  333.3s]       node r        n=6063   pos=3017   errors=627   (4.1s)
+[  336.8s]       node rA       n=2981   pos=281    errors=4     (3.6s)
+[  337.5s]       node rAA      n=2700   pos=2      errors=0     (0.7s)
+[  337.6s]       node rAB      n=281    pos=2      errors=0     (0.0s)
+[  341.1s]       node rB       n=3082   pos=346    errors=8     (3.6s)
+[  341.3s]       node rBB      n=354    pos=8      errors=0     (0.2s)
+[  344.7s]   train 0.9734  val 0.4192  test 0.4174  163 nodes, depth 40, 188533 params, 344.6s
+[  434.5s]   pruned: -120 nodes -> 43 nodes, 50353 params; train 0.7135 test 0.4550
+[  463.3s]   capacity-matched single network (width 107, 187838 params): train 1.0000 test 0.5513
+[  465.9s] done

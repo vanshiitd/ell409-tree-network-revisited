@@ -1,0 +1,13 @@
+.venv/
+data/
+__pycache__/
+*.pyc
+.DS_Store
+results/trees/*.pt
+results/trunks/*.pt
+report/*.aux
+report/*.log
+report/*.bbl
+report/*.blg
+report/*.out
+report/*.toc

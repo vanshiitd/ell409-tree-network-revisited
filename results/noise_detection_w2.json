@@ -1,0 +1,124 @@
+{
+  "catsdogs": {
+    "n": 4000,
+    "flipped": 793,
+    "auc_leaf_size": 0.6592945129880216,
+    "auc_depth": 0.4038098799481431,
+    "precision_at_k": 0.3593947036569987,
+    "leaf_size_median_clean": 1284.0,
+    "leaf_size_median_flipped": 373.0,
+    "mean_depth_clean": 3.6086685375740566,
+    "mean_depth_flipped": 3.266078184110971,
+    "train_acc": 1.0
+  },
+  "cifar10": {
+    "n": 4000,
+    "flipped": 793,
+    "auc_leaf_size": 0.7371691653385898,
+    "auc_depth": 0.48632739463759717,
+    "precision_at_k": 0.4337957124842371,
+    "leaf_size_median_clean": 408.0,
+    "leaf_size_median_flipped": 133.0,
+    "mean_depth_clean": 10.57280947926411,
+    "mean_depth_flipped": 10.408575031525851,
+    "train_acc": 1.0
+  },
+  "catsdogs_real_smallest_sets": [
+    {
+      "index": 2786,
+      "label": 1,
+      "depth": 4,
+      "leaf": 1
+    },
+    {
+      "index": 729,
+      "label": 1,
+      "depth": 5,
+      "leaf": 3
+    },
+    {
+      "index": 1528,
+      "label": 1,
+      "depth": 5,
+      "leaf": 3
+    },
+    {
+      "index": 11749,
+      "label": 0,
+      "depth": 5,
+      "leaf": 3
+    },
+    {
+      "index": 16,
+      "label": 1,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 42,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 128,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 133,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 149,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 150,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 178,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 212,
+      "label": 1,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 227,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 240,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 263,
+      "label": 0,
+      "depth": 2,
+      "leaf": 523
+    },
+    {
+      "index": 269,
+      "label": 1,
+      "depth": 2,
+      "leaf": 523
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+\begin{tabular}{@{}l l l r r r r r r r@{}}
+\toprule
+ & & & \multicolumn{4}{c}{grown tree (until error-free or depth 40)} & \multicolumn{2}{c}{after pruning} & one net\\
+\cmidrule(lr){4-7}\cmidrule(lr){8-9}\cmidrule(lr){10-10}
+dataset & trunk & children & nodes & depth & train & test & nodes & test & test\\
+\midrule
+Cats vs Dogs & own split & gated & 11 & 5 & 99.99 & 86.1 & 1 & 88.8 & 88.9\\
+ & own split & faithful & 104 & 40 & 99.98 & 84.4 & -- & -- & 88.8\\
+ & CIFAR-10 & gated & 12 & 4 & 99.99 & 76.8 & 1 & 81.5 & 81.9\\
+ & random & gated & 14 & 4 & 99.99 & 62.7 & 1 & 66.3 & 68.1\\
+\addlinespace
+CIFAR-10 & own split & gated & 96 & 23 & 100 & 66.7 & 13 & 71.4 & 76.7\\
+ & own split & faithful & 453 & 40 & 95.16 & 66.5 & -- & -- & 80.3\\
+ & random & gated & 163 & 40 & 97.34 & 41.7 & 43 & 45.5 & 55.1\\
+\bottomrule
+\end{tabular}

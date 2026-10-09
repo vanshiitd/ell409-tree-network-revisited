@@ -1,0 +1,12 @@
+[   94.3s] catsdogs width 1: 91 nodes, 11488 params, train 0.9999 test 0.8208 | pruned 1 nodes test 0.8630 (94.2s)
+[  238.1s] catsdogs width 2: 151 nodes, 28519 params, train 0.9852 test 0.8376 | pruned 5 nodes test 0.8702 (143.8s)
+[  391.5s] catsdogs width 4: 139 nodes, 44225 params, train 0.9674 test 0.8424 | pruned 20 nodes test 0.8598 (153.4s)
+[  403.5s] catsdogs width 16: 3 nodes, 13167 params, train 0.9999 test 0.8780 | pruned 1 nodes test 0.8780 (12.1s)
+[  412.7s] catsdogs width 32: 3 nodes, 50907 params, train 0.9999 test 0.8942 | pruned 1 nodes test 0.8942 (9.2s)
+[  421.7s] catsdogs width 64: 3 nodes, 200115 params, train 0.9999 test 0.8888 | pruned 1 nodes test 0.8888 (8.9s)
+[  429.4s] catsdogs weight pruning: 11710 -> 8602 non-zero node weights (26.5% removed); train 0.9999->0.9999, test 0.8608->0.8610
+[  492.3s] cifar10 width 16: 14 nodes, 61446 params, train 1.0000 test 0.7073 | pruned 9 nodes test 0.7071 (62.8s)
+[  517.0s] cifar10 width 32: 9 nodes, 152721 params, train 1.0000 test 0.7435 | pruned 9 nodes test 0.7435 (24.6s)
+[  533.3s] cifar10 width 64: 9 nodes, 600345 params, train 1.0000 test 0.7594 | pruned 9 nodes test 0.7594 (16.3s)
+[  607.1s] cifar10 weight pruning: 110074 -> 68100 non-zero node weights (38.1% removed); train 1.0000->1.0000, test 0.6667->0.6682
+[  607.2s] done

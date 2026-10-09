@@ -1,0 +1,9 @@
+# tested with Python 3.12 on Apple M5 (PyTorch MPS backend); CUDA or CPU also work
+torch>=2.3          # tested 2.14.1
+torchvision>=0.18   # tested 0.29.1
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+pillow>=10
+pyarrow>=15         # only to read the Hugging Face copy of CIFAR-10

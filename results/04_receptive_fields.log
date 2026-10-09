@@ -1,0 +1,8 @@
+[    2.9s] catsdogs: 7 nodes analysed, 6 shown
+[   10.3s]   wrote figures/rf_catsdogs.pdf
+[   10.4s] done
+[    1.3s] catsdogs: 7 nodes analysed, 7 shown
+[    7.7s]   wrote figures/rf_catsdogs.pdf
+[   12.4s] cifar10: 79 nodes analysed, 5 shown
+[   14.5s]   wrote figures/rf_cifar10.pdf
+[   14.6s] done

@@ -1,0 +1,41 @@
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[font=small,labelfont=bf,labelsep=period]{caption}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,shapes.geometric}
+\usepackage[most]{tcolorbox}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=cNavy,citecolor=cNavy,urlcolor=cNavy]{hyperref}
+\usepackage[capitalise,nameinlink]{cleveref}
+
+\definecolor{cBlue}{HTML}{2A78D6}
+\definecolor{cOrange}{HTML}{EB6834}
+\definecolor{cAqua}{HTML}{1BAF7A}
+\definecolor{cInk}{HTML}{0B0B0B}
+\definecolor{cInkTwo}{HTML}{52514E}
+\definecolor{cMuted}{HTML}{898781}
+\definecolor{cNavy}{HTML}{1C3D6E}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ind}[1]{\mathbf{1}\!\left[#1\right]}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newtcolorbox{keybox}[1][]{enhanced, breakable, colback=cBlue!4, colframe=cBlue!70!black,
+  boxrule=0.6pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=4pt, fonttitle=\bfseries\small, title={#1}}
+
+\setlist{itemsep=1.5pt, topsep=3pt}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\arraystretch}{1.1}

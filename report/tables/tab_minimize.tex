@@ -1,0 +1,15 @@
+\begin{tabular}{@{}l l r r r r r@{}}
+\toprule
+dataset & model & nodes & node parameters & non-zero & train (\%) & test (\%)\\
+\midrule
+Cats vs Dogs & full tree, $w=8$ & 11 & 11{,}711 & 11{,}711 & 99.99 & 86.1\\
+ & smallest interpolating tree, $w=1$ & 91 & 11{,}488 & 11{,}488 & 99.99 & 82.1\\
+ & $w=8$ + magnitude pruning inside nodes & 11 & 11{,}710 & 8{,}602 & 99.99 & 86.1\\
+ & $w=8$ + reduced-error pruning & 1 & 1{,}171 & 1{,}171 & 91.59 & 88.8\\
+\addlinespace
+CIFAR-10 & full tree, $w=8$ & 96 & 110{,}076 & 110{,}076 & 100 & 66.7\\
+ & smallest interpolating tree, $w=16$ & 14 & 61{,}446 & 61{,}446 & 100 & 70.7\\
+ & $w=8$ + magnitude pruning inside nodes & 96 & 110{,}074 & 68{,}100 & 100 & 66.8\\
+ & $w=8$ + reduced-error pruning & 13 & 15{,}223 & 15{,}223 & 83.30 & 71.4\\
+\bottomrule
+\end{tabular}

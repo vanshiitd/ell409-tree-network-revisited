@@ -1,0 +1,18 @@
+[    9.2s] catsdogs: AUC 0.358, precision@793 0.145, mean depth clean 1.91 flipped 1.62
+[   26.3s] cifar10: AUC 0.503, precision@793 0.194, mean depth clean 1.70 flipped 1.71
+[   27.0s] done
+[   55.8s] catsdogs: AUC 0.459, precision@793 0.267, mean depth clean 6.46 flipped 6.30
+[  177.6s] cifar10: AUC 0.581, precision@793 0.203, mean depth clean 10.08 flipped 11.37
+[  178.7s] done
+[   52.6s] catsdogs: AUC 0.404, precision@793 0.241, mean depth clean 3.61 flipped 3.27
+[  199.0s] cifar10: AUC 0.486, precision@793 0.124, mean depth clean 10.57 flipped 10.41
+[  200.2s] done
+[   39.5s] catsdogs: AUC 0.368, precision@793 0.082, mean depth clean 3.80 flipped 3.26
+[  127.9s] cifar10: AUC 0.441, precision@793 0.116, mean depth clean 6.85 flipped 6.36
+[  129.0s] done
+[   48.5s] catsdogs: leaf-size AUC 0.659 (depth AUC 0.404), precision@793 0.359, median leaf size clean 1284 flipped 373
+[  182.8s] cifar10: leaf-size AUC 0.737 (depth AUC 0.486), precision@793 0.434, median leaf size clean 408 flipped 133
+[  184.0s] done
+[   13.6s] catsdogs: leaf-size AUC 0.368 (depth AUC 0.358), precision@793 0.159, median leaf size clean 1710 flipped 1710
+[   38.6s] cifar10: leaf-size AUC 0.480 (depth AUC 0.503), precision@793 0.179, median leaf size clean 790 flipped 790
+[   39.8s] done

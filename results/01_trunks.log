@@ -1,0 +1,40 @@
+[    0.0s] device: mps
+[    0.0s] == cifar10
+[    0.1s]   split trunk: (15000, 32, 32, 3), class counts [1450, 1526, 1536, 1541, 1459, 1501, 1484, 1513, 1506, 1484]
+[    0.1s]   split val  : (5000, 32, 32, 3), class counts [504, 511, 495, 508, 513, 504, 497, 506, 477, 485]
+[    0.1s]   split tree : (30000, 32, 32, 3), class counts [3046, 2963, 2969, 2951, 3028, 2995, 3019, 2981, 3017, 3031]
+[    0.1s]   split test : (10000, 32, 32, 3), class counts [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+[    0.1s]   training the supervised trunk on the trunk split
+[   17.9s]     trunk epoch 5/40: loss 0.948 train-acc 0.665 (3.1s)
+[   33.6s]     trunk epoch 10/40: loss 0.659 train-acc 0.773 (3.3s)
+[   51.0s]     trunk epoch 15/40: loss 0.525 train-acc 0.819 (3.5s)
+[   68.4s]     trunk epoch 20/40: loss 0.430 train-acc 0.852 (3.5s)
+[   85.8s]     trunk epoch 25/40: loss 0.353 train-acc 0.877 (3.5s)
+[  102.9s]     trunk epoch 30/40: loss 0.270 train-acc 0.906 (3.4s)
+[  120.3s]     trunk epoch 35/40: loss 0.185 train-acc 0.941 (3.5s)
+[  137.7s]     trunk epoch 40/40: loss 0.148 train-acc 0.955 (3.5s)
+[  139.5s]   trunk accuracy: {'trunk': 0.9733333333333334, 'val': 0.853, 'test': 0.8511}
+[  141.9s]   cached feats_cifar10_split.npz: tree (30000, 64, 8, 8), val (5000, 64, 8, 8), test (10000, 64, 8, 8)
+[  141.9s]   random (untrained) trunk
+[  151.1s]   cached feats_cifar10_random.npz: tree (30000, 64, 8, 8), val (5000, 64, 8, 8), test (10000, 64, 8, 8)
+[  151.1s] == catsdogs
+[  151.2s]   split trunk: (6000, 64, 64, 3), class counts [2954, 3046]
+[  151.2s]   split val  : (2000, 64, 64, 3), class counts [972, 1028]
+[  151.2s]   split tree : (11997, 64, 64, 3), class counts [6066, 5931]
+[  151.2s]   split test : (5000, 64, 64, 3), class counts [2506, 2494]
+[  151.2s]   training the supervised trunk on the trunk split
+[  166.0s]     trunk epoch 5/40: loss 0.474 train-acc 0.779 (2.5s)
+[  178.3s]     trunk epoch 10/40: loss 0.339 train-acc 0.853 (2.5s)
+[  190.6s]     trunk epoch 15/40: loss 0.256 train-acc 0.892 (2.5s)
+[  202.9s]     trunk epoch 20/40: loss 0.204 train-acc 0.916 (2.5s)
+[  215.8s]     trunk epoch 25/40: loss 0.175 train-acc 0.927 (2.7s)
+[  229.2s]     trunk epoch 30/40: loss 0.118 train-acc 0.953 (2.9s)
+[  244.0s]     trunk epoch 35/40: loss 0.080 train-acc 0.971 (2.8s)
+[  257.0s]     trunk epoch 40/40: loss 0.058 train-acc 0.981 (2.6s)
+[  258.9s]   trunk accuracy: {'trunk': 0.9916666666666667, 'val': 0.922, 'test': 0.9192}
+[  261.0s]   cached feats_catsdogs_split.npz: tree (11997, 64, 8, 8), val (2000, 64, 8, 8), test (5000, 64, 8, 8)
+[  261.0s]   random (untrained) trunk
+[  265.1s]   cached feats_catsdogs_random.npz: tree (11997, 64, 8, 8), val (2000, 64, 8, 8), test (5000, 64, 8, 8)
+[  265.1s]   transfer trunk: CIFAR-10 trunk on images resized to 32x32
+[  266.5s]   cached feats_catsdogs_transfer.npz: tree (11997, 64, 8, 8), val (2000, 64, 8, 8), test (5000, 64, 8, 8)
+[  266.5s] done

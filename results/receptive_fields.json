@@ -1,0 +1,2100 @@
+{
+  "catsdogs": [
+    {
+      "split": "T",
+      "node": "r",
+      "depth": 0,
+      "n": 11997,
+      "n_pos": 5931,
+      "errors": 1009,
+      "centrality": 0.2519940435886383,
+      "positive_classes": [
+        0,
+        5931
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "T",
+      "node": "rA",
+      "depth": 1,
+      "n": 6111,
+      "n_pos": 527,
+      "errors": 159,
+      "centrality": 0.2728564441204071,
+      "positive_classes": [
+        0,
+        527
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "T",
+      "node": "rAA",
+      "depth": 2,
+      "n": 5523,
+      "n_pos": 49,
+      "errors": 0,
+      "centrality": 0.20670185983181,
+      "positive_classes": [
+        0,
+        49
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "T",
+      "node": "rAB",
+      "depth": 2,
+      "n": 588,
+      "n_pos": 110,
+      "errors": 0,
+      "centrality": 0.2494770586490631,
+      "positive_classes": [
+        110,
+        0
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "T",
+      "node": "rB",
+      "depth": 1,
+      "n": 5886,
+      "n_pos": 482,
+      "errors": 73,
+      "centrality": 0.16773934662342072,
+      "positive_classes": [
+        482,
+        0
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "T",
+      "node": "rBA",
+      "depth": 2,
+      "n": 5363,
+      "n_pos": 16,
+      "errors": 1,
+      "centrality": 0.05271941423416138,
+      "positive_classes": [
+        16,
+        0
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "T",
+      "node": "rBB",
+      "depth": 2,
+      "n": 523,
+      "n_pos": 57,
+      "errors": 0,
+      "centrality": 0.21565423905849457,
+      "positive_classes": [
+        0,
+        57
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    }
+  ],
+  "cifar10": [
+    {
+      "split": "H",
+      "node": "r",
+      "depth": 0,
+      "n": 30000,
+      "n_pos": 12057,
+      "errors": 1089,
+      "centrality": 0.33497411012649536,
+      "positive_classes": [
+        3046,
+        2963,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3017,
+        3031
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rA",
+      "depth": 1,
+      "n": 17942,
+      "n_pos": 544,
+      "errors": 534,
+      "centrality": 0.33940786123275757,
+      "positive_classes": [
+        285,
+        44,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        115,
+        100
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAA",
+      "depth": 2,
+      "n": 17922,
+      "n_pos": 529,
+      "errors": 528,
+      "centrality": 0.24600523710250854,
+      "positive_classes": [
+        273,
+        43,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        113,
+        100
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAA",
+      "depth": 3,
+      "n": 17921,
+      "n_pos": 528,
+      "errors": 403,
+      "centrality": 0.25706297159194946,
+      "positive_classes": [
+        272,
+        43,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        113,
+        100
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAA",
+      "depth": 4,
+      "n": 17290,
+      "n_pos": 150,
+      "errors": 149,
+      "centrality": 0.21874266862869263,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        27
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAA",
+      "depth": 5,
+      "n": 17289,
+      "n_pos": 149,
+      "errors": 148,
+      "centrality": 0.2445690929889679,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        26
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAA",
+      "depth": 6,
+      "n": 17288,
+      "n_pos": 148,
+      "errors": 149,
+      "centrality": NaN,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        25
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAAA",
+      "depth": 7,
+      "n": 17287,
+      "n_pos": 148,
+      "errors": 147,
+      "centrality": 0.33579498529434204,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        25
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAAAA",
+      "depth": 8,
+      "n": 17286,
+      "n_pos": 147,
+      "errors": 148,
+      "centrality": NaN,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        24
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAAAAA",
+      "depth": 9,
+      "n": 17285,
+      "n_pos": 147,
+      "errors": 145,
+      "centrality": 0.1949882209300995,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        24
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAAAAAA",
+      "depth": 10,
+      "n": 17283,
+      "n_pos": 145,
+      "errors": 144,
+      "centrality": 0.1523819863796234,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        40,
+        22
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAAAAAAA",
+      "depth": 11,
+      "n": 17282,
+      "n_pos": 144,
+      "errors": 143,
+      "centrality": 0.329881876707077,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        39,
+        22
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAAAAAAAA",
+      "depth": 12,
+      "n": 17281,
+      "n_pos": 143,
+      "errors": 14,
+      "centrality": 0.2470177710056305,
+      "positive_classes": [
+        69,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        39,
+        21
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAAAAAAAAAAB",
+      "depth": 13,
+      "n": 155,
+      "n_pos": 13,
+      "errors": 0,
+      "centrality": 0.20880143344402313,
+      "positive_classes": [
+        0,
+        0,
+        5,
+        2,
+        2,
+        2,
+        0,
+        2,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAAAB",
+      "depth": 4,
+      "n": 631,
+      "n_pos": 253,
+      "errors": 0,
+      "centrality": 0.2508053779602051,
+      "positive_classes": [
+        0,
+        0,
+        81,
+        38,
+        38,
+        19,
+        34,
+        43,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rAB",
+      "depth": 2,
+      "n": 20,
+      "n_pos": 5,
+      "errors": 0,
+      "centrality": 0.24000516533851624,
+      "positive_classes": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        2,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rB",
+      "depth": 1,
+      "n": 12058,
+      "n_pos": 545,
+      "errors": 259,
+      "centrality": 0.30074751377105713,
+      "positive_classes": [
+        0,
+        0,
+        195,
+        97,
+        85,
+        34,
+        65,
+        69,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rBA",
+      "depth": 2,
+      "n": 11428,
+      "n_pos": 87,
+      "errors": 85,
+      "centrality": 0.4987960457801819,
+      "positive_classes": [
+        0,
+        0,
+        45,
+        11,
+        14,
+        3,
+        10,
+        4,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rBAA",
+      "depth": 3,
+      "n": 11426,
+      "n_pos": 85,
+      "errors": 11,
+      "centrality": 0.3247654438018799,
+      "positive_classes": [
+        0,
+        0,
+        44,
+        11,
+        13,
+        3,
+        10,
+        4,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rBAAB",
+      "depth": 4,
+      "n": 94,
+      "n_pos": 10,
+      "errors": 0,
+      "centrality": 0.29049062728881836,
+      "positive_classes": [
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H",
+      "node": "rBB",
+      "depth": 2,
+      "n": 630,
+      "n_pos": 172,
+      "errors": 0,
+      "centrality": 0.34746140241622925,
+      "positive_classes": [
+        96,
+        17,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        37,
+        22
+      ],
+      "sides": [
+        "deer/horse/bird/frog/cat/dog",
+        "automobile/truck/airplane/ship"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "r",
+      "depth": 0,
+      "n": 17943,
+      "n_pos": 5946,
+      "errors": 2107,
+      "centrality": 0.385099858045578,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        2951,
+        0,
+        2995,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rA",
+      "depth": 1,
+      "n": 12416,
+      "n_pos": 1263,
+      "errors": 1110,
+      "centrality": 0.30171629786491394,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        756,
+        0,
+        507,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAA",
+      "depth": 2,
+      "n": 11553,
+      "n_pos": 755,
+      "errors": 743,
+      "centrality": 0.4563482105731964,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        428,
+        0,
+        327,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAA",
+      "depth": 3,
+      "n": 11493,
+      "n_pos": 719,
+      "errors": 716,
+      "centrality": 0.18724101781845093,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        413,
+        0,
+        306,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAA",
+      "depth": 4,
+      "n": 11484,
+      "n_pos": 713,
+      "errors": 593,
+      "centrality": 0.3044092655181885,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        410,
+        0,
+        303,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAA",
+      "depth": 5,
+      "n": 10720,
+      "n_pos": 271,
+      "errors": 268,
+      "centrality": 0.176471546292305,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        167,
+        0,
+        104,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAA",
+      "depth": 6,
+      "n": 10717,
+      "n_pos": 268,
+      "errors": 267,
+      "centrality": 0.22211375832557678,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        165,
+        0,
+        103,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAA",
+      "depth": 7,
+      "n": 10716,
+      "n_pos": 267,
+      "errors": 265,
+      "centrality": 0.1983189731836319,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        165,
+        0,
+        102,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAA",
+      "depth": 8,
+      "n": 10714,
+      "n_pos": 265,
+      "errors": 262,
+      "centrality": 0.21227246522903442,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        163,
+        0,
+        102,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAA",
+      "depth": 9,
+      "n": 10711,
+      "n_pos": 262,
+      "errors": 261,
+      "centrality": 0.16300207376480103,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        163,
+        0,
+        99,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAA",
+      "depth": 10,
+      "n": 10708,
+      "n_pos": 260,
+      "errors": 258,
+      "centrality": 0.2891417145729065,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        163,
+        0,
+        97,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAA",
+      "depth": 11,
+      "n": 10706,
+      "n_pos": 258,
+      "errors": 257,
+      "centrality": 0.007071556523442268,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        162,
+        0,
+        96,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAA",
+      "depth": 12,
+      "n": 10705,
+      "n_pos": 257,
+      "errors": 256,
+      "centrality": 0.4721471071243286,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        162,
+        0,
+        95,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAA",
+      "depth": 13,
+      "n": 10702,
+      "n_pos": 255,
+      "errors": 254,
+      "centrality": 0.19292159378528595,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        161,
+        0,
+        94,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAA",
+      "depth": 14,
+      "n": 10693,
+      "n_pos": 250,
+      "errors": 248,
+      "centrality": 0.14946553111076355,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        156,
+        0,
+        94,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAA",
+      "depth": 15,
+      "n": 10689,
+      "n_pos": 247,
+      "errors": 245,
+      "centrality": 0.3001081347465515,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        154,
+        0,
+        93,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAA",
+      "depth": 16,
+      "n": 10687,
+      "n_pos": 245,
+      "errors": 244,
+      "centrality": 0.19806045293807983,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        152,
+        0,
+        93,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAA",
+      "depth": 17,
+      "n": 10686,
+      "n_pos": 244,
+      "errors": 241,
+      "centrality": 0.1266404390335083,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        151,
+        0,
+        93,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAAA",
+      "depth": 18,
+      "n": 10681,
+      "n_pos": 240,
+      "errors": 239,
+      "centrality": 0.1783583164215088,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        149,
+        0,
+        91,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAAAA",
+      "depth": 19,
+      "n": 10680,
+      "n_pos": 239,
+      "errors": 236,
+      "centrality": 0.3298507332801819,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        148,
+        0,
+        91,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAAAAA",
+      "depth": 20,
+      "n": 10677,
+      "n_pos": 236,
+      "errors": 234,
+      "centrality": 0.24265767633914948,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        146,
+        0,
+        90,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAAAAAA",
+      "depth": 21,
+      "n": 10675,
+      "n_pos": 234,
+      "errors": 234,
+      "centrality": 0.14485768973827362,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        145,
+        0,
+        89,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAAAAAAA",
+      "depth": 22,
+      "n": 10673,
+      "n_pos": 233,
+      "errors": 69,
+      "centrality": 0.2720223069190979,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        145,
+        0,
+        88,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAAAAAAAA",
+      "depth": 23,
+      "n": 10401,
+      "n_pos": 15,
+      "errors": 0,
+      "centrality": 0.01060264091938734,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        10,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAAAAAAAAAAAAAAAAAAAB",
+      "depth": 23,
+      "n": 272,
+      "n_pos": 54,
+      "errors": 0,
+      "centrality": 0.23431819677352905,
+      "positive_classes": [
+        0,
+        0,
+        8,
+        0,
+        20,
+        0,
+        12,
+        14,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAAAB",
+      "depth": 5,
+      "n": 764,
+      "n_pos": 322,
+      "errors": 0,
+      "centrality": 0.24863234162330627,
+      "positive_classes": [
+        0,
+        0,
+        83,
+        0,
+        96,
+        0,
+        76,
+        67,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAAB",
+      "depth": 3,
+      "n": 60,
+      "n_pos": 24,
+      "errors": 0,
+      "centrality": 0.3236376941204071,
+      "positive_classes": [
+        0,
+        0,
+        8,
+        0,
+        7,
+        0,
+        1,
+        8,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rAB",
+      "depth": 2,
+      "n": 863,
+      "n_pos": 355,
+      "errors": 1,
+      "centrality": 0.30163320899009705,
+      "positive_classes": [
+        0,
+        0,
+        118,
+        0,
+        68,
+        0,
+        89,
+        80,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rB",
+      "depth": 1,
+      "n": 5527,
+      "n_pos": 844,
+      "errors": 617,
+      "centrality": 0.25754767656326294,
+      "positive_classes": [
+        0,
+        0,
+        243,
+        0,
+        181,
+        0,
+        189,
+        231,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rBA",
+      "depth": 2,
+      "n": 4910,
+      "n_pos": 422,
+      "errors": 31,
+      "centrality": 0.2363278716802597,
+      "positive_classes": [
+        0,
+        0,
+        125,
+        0,
+        88,
+        0,
+        97,
+        112,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rBAA",
+      "depth": 3,
+      "n": 4473,
+      "n_pos": 8,
+      "errors": 0,
+      "centrality": 0.2963625192642212,
+      "positive_classes": [
+        0,
+        0,
+        3,
+        0,
+        2,
+        0,
+        2,
+        1,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rBAB",
+      "depth": 3,
+      "n": 437,
+      "n_pos": 23,
+      "errors": 0,
+      "centrality": 0.25425058603286743,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        12,
+        0,
+        11,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H0",
+      "node": "rBB",
+      "depth": 2,
+      "n": 617,
+      "n_pos": 195,
+      "errors": 0,
+      "centrality": 0.20337989926338196,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        136,
+        0,
+        59,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse/bird/frog",
+        "cat/dog"
+      ]
+    },
+    {
+      "split": "H00",
+      "node": "r",
+      "depth": 0,
+      "n": 11997,
+      "n_pos": 5988,
+      "errors": 1054,
+      "centrality": 0.4006205201148987,
+      "positive_classes": [
+        0,
+        0,
+        2969,
+        0,
+        0,
+        0,
+        3019,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse",
+        "bird/frog"
+      ]
+    },
+    {
+      "split": "H00",
+      "node": "rA",
+      "depth": 1,
+      "n": 6135,
+      "n_pos": 590,
+      "errors": 63,
+      "centrality": 0.31693270802497864,
+      "positive_classes": [
+        0,
+        0,
+        425,
+        0,
+        0,
+        0,
+        165,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse",
+        "bird/frog"
+      ]
+    },
+    {
+      "split": "H00",
+      "node": "rAA",
+      "depth": 2,
+      "n": 5508,
+      "n_pos": 13,
+      "errors": 0,
+      "centrality": 0.2395104467868805,
+      "positive_classes": [
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse",
+        "bird/frog"
+      ]
+    },
+    {
+      "split": "H00",
+      "node": "rAB",
+      "depth": 2,
+      "n": 627,
+      "n_pos": 50,
+      "errors": 0,
+      "centrality": 0.3068219721317291,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        41,
+        0,
+        0,
+        9,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse",
+        "bird/frog"
+      ]
+    },
+    {
+      "split": "H00",
+      "node": "rB",
+      "depth": 1,
+      "n": 5862,
+      "n_pos": 464,
+      "errors": 20,
+      "centrality": 0.255171537399292,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        331,
+        0,
+        0,
+        133,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse",
+        "bird/frog"
+      ]
+    },
+    {
+      "split": "H00",
+      "node": "rBB",
+      "depth": 2,
+      "n": 476,
+      "n_pos": 16,
+      "errors": 0,
+      "centrality": 0.2583036422729492,
+      "positive_classes": [
+        0,
+        0,
+        12,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer/horse",
+        "bird/frog"
+      ]
+    },
+    {
+      "split": "H000",
+      "node": "r",
+      "depth": 0,
+      "n": 6009,
+      "n_pos": 2981,
+      "errors": 257,
+      "centrality": 0.3055955171585083,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2981,
+        0,
+        0
+      ],
+      "sides": [
+        "deer",
+        "horse"
+      ]
+    },
+    {
+      "split": "H000",
+      "node": "rA",
+      "depth": 1,
+      "n": 2949,
+      "n_pos": 89,
+      "errors": 0,
+      "centrality": 0.3163925111293793,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        89,
+        0,
+        0
+      ],
+      "sides": [
+        "deer",
+        "horse"
+      ]
+    },
+    {
+      "split": "H000",
+      "node": "rB",
+      "depth": 1,
+      "n": 3060,
+      "n_pos": 168,
+      "errors": 0,
+      "centrality": 0.2914513349533081,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        168,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "deer",
+        "horse"
+      ]
+    },
+    {
+      "split": "H001",
+      "node": "r",
+      "depth": 0,
+      "n": 5988,
+      "n_pos": 3019,
+      "errors": 211,
+      "centrality": 0.37326109409332275,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3019,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "bird",
+        "frog"
+      ]
+    },
+    {
+      "split": "H001",
+      "node": "rA",
+      "depth": 1,
+      "n": 2978,
+      "n_pos": 110,
+      "errors": 0,
+      "centrality": 0.30226290225982666,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        110,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "bird",
+        "frog"
+      ]
+    },
+    {
+      "split": "H001",
+      "node": "rB",
+      "depth": 1,
+      "n": 3010,
+      "n_pos": 101,
+      "errors": 0,
+      "centrality": 0.2101137638092041,
+      "positive_classes": [
+        0,
+        0,
+        101,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "bird",
+        "frog"
+      ]
+    },
+    {
+      "split": "H01",
+      "node": "r",
+      "depth": 0,
+      "n": 5946,
+      "n_pos": 2995,
+      "errors": 471,
+      "centrality": 0.2996038496494293,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2995,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "H01",
+      "node": "rA",
+      "depth": 1,
+      "n": 2916,
+      "n_pos": 218,
+      "errors": 3,
+      "centrality": 0.27510178089141846,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        218,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "H01",
+      "node": "rB",
+      "depth": 1,
+      "n": 3030,
+      "n_pos": 253,
+      "errors": 0,
+      "centrality": 0.28320741653442383,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        253,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "cat",
+        "dog"
+      ]
+    },
+    {
+      "split": "H1",
+      "node": "r",
+      "depth": 0,
+      "n": 12057,
+      "n_pos": 6063,
+      "errors": 448,
+      "centrality": 0.36834368109703064,
+      "positive_classes": [
+        3046,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3017,
+        0
+      ],
+      "sides": [
+        "automobile/truck",
+        "airplane/ship"
+      ]
+    },
+    {
+      "split": "H1",
+      "node": "rA",
+      "depth": 1,
+      "n": 5900,
+      "n_pos": 177,
+      "errors": 1,
+      "centrality": 0.22709453105926514,
+      "positive_classes": [
+        105,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        72,
+        0
+      ],
+      "sides": [
+        "automobile/truck",
+        "airplane/ship"
+      ]
+    },
+    {
+      "split": "H1",
+      "node": "rB",
+      "depth": 1,
+      "n": 6157,
+      "n_pos": 271,
+      "errors": 40,
+      "centrality": 0.2662680447101593,
+      "positive_classes": [
+        0,
+        120,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        151
+      ],
+      "sides": [
+        "automobile/truck",
+        "airplane/ship"
+      ]
+    },
+    {
+      "split": "H1",
+      "node": "rBB",
+      "depth": 2,
+      "n": 303,
+      "n_pos": 36,
+      "errors": 0,
+      "centrality": 0.27148303389549255,
+      "positive_classes": [
+        19,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        17,
+        0
+      ],
+      "sides": [
+        "automobile/truck",
+        "airplane/ship"
+      ]
+    },
+    {
+      "split": "H10",
+      "node": "r",
+      "depth": 0,
+      "n": 5994,
+      "n_pos": 3031,
+      "errors": 44,
+      "centrality": 0.3114669919013977,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3031
+      ],
+      "sides": [
+        "automobile",
+        "truck"
+      ]
+    },
+    {
+      "split": "H10",
+      "node": "rA",
+      "depth": 1,
+      "n": 2973,
+      "n_pos": 27,
+      "errors": 0,
+      "centrality": 0.2352593094110489,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        27
+      ],
+      "sides": [
+        "automobile",
+        "truck"
+      ]
+    },
+    {
+      "split": "H10",
+      "node": "rB",
+      "depth": 1,
+      "n": 3021,
+      "n_pos": 17,
+      "errors": 0,
+      "centrality": 0.3163831830024719,
+      "positive_classes": [
+        0,
+        17,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "automobile",
+        "truck"
+      ]
+    },
+    {
+      "split": "H11",
+      "node": "r",
+      "depth": 0,
+      "n": 6063,
+      "n_pos": 3017,
+      "errors": 143,
+      "centrality": 0.3675552010536194,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3017,
+        0
+      ],
+      "sides": [
+        "airplane",
+        "ship"
+      ]
+    },
+    {
+      "split": "H11",
+      "node": "rA",
+      "depth": 1,
+      "n": 3051,
+      "n_pos": 74,
+      "errors": 0,
+      "centrality": 0.3925255537033081,
+      "positive_classes": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        74,
+        0
+      ],
+      "sides": [
+        "airplane",
+        "ship"
+      ]
+    },
+    {
+      "split": "H11",
+      "node": "rB",
+      "depth": 1,
+      "n": 3012,
+      "n_pos": 69,
+      "errors": 1,
+      "centrality": 0.21477432548999786,
+      "positive_classes": [
+        69,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sides": [
+        "airplane",
+        "ship"
+      ]
+    }
+  ]
+}
